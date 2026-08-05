@@ -653,5 +653,28 @@ document.addEventListener('DOMContentLoaded', () => {
                 updateOrbitalShowcase(nextIndex);
             });
         }
+
+        // GSAP ScrollTrigger Pinned Orbital Dial Showcase Controller
+        if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined' && window.innerWidth > 992) {
+            const orbitalSection = document.querySelector('.orbital-showcase-section');
+            if (orbitalSection) {
+                ScrollTrigger.create({
+                    trigger: orbitalSection,
+                    start: "top top",
+                    end: () => `+=${window.innerHeight * 3.5}`,
+                    pin: true,
+                    anticipatePin: 1,
+                    onUpdate: (self) => {
+                        const progress = self.progress;
+                        const rawIndex = Math.floor(progress * orbitalServices.length);
+                        const targetIndex = Math.min(Math.max(rawIndex, 0), orbitalServices.length - 1);
+                        
+                        if (targetIndex !== currentOrbitalIndex) {
+                            updateOrbitalShowcase(targetIndex);
+                        }
+                    }
+                });
+            }
+        }
     }
 });
