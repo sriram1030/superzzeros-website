@@ -126,6 +126,7 @@ section {
     font-weight: 700;
 }
 
+.text-gradient,
 .section-title {
     font-family: "Geist", sans-serif;
     font-weight: 700;
@@ -133,6 +134,11 @@ section {
     line-height: 0.92;
     text-transform: uppercase;
     letter-spacing: -0.06em;
+    background: linear-gradient(90deg, #9499a3 0%, #ffffff 30%, #ffffff 70%, #595d66 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: inline-block;
 }
 
 /* Ambient Glow Spotlight */
@@ -486,7 +492,10 @@ header.scrolled .mobile-menu-toggle span {
     font-weight: 700;
     line-height: 0.92;
     letter-spacing: -0.06em;
-    color: #ffffff;
+    background: linear-gradient(90deg, #9499a3 0%, #ffffff 30%, #ffffff 70%, #595d66 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     margin-bottom: 1.8rem;
     text-transform: uppercase;
 }
@@ -495,7 +504,10 @@ header.scrolled .mobile-menu-toggle span {
     font-family: var(--font-accent);
     font-style: italic;
     font-weight: 400;
-    color: var(--accent);
+    background: linear-gradient(90deg, #ff5c66 0%, #E50914 60%, #ff858d 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     text-transform: none;
     padding: 0 0.1em;
 }
