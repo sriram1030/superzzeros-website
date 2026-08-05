@@ -186,14 +186,17 @@ header.scrolled {
 }
 
 .header-logo {
-    height: 90px;
+    height: 48px;
+    width: auto;
+    max-width: 190px;
+    object-fit: contain;
     filter: invert(1);
     mix-blend-mode: screen;
     transition: height 0.3s ease, filter 0.3s ease;
 }
 
 header.scrolled .header-logo {
-    height: 55px;
+    height: 40px;
     filter: invert(1);
     mix-blend-mode: screen;
 }
@@ -1743,15 +1746,18 @@ footer {
     
     /* Header & Mobile Menu */
     header.site-header {
-        padding: 1rem 0;
+        padding: 0.8rem 0;
     }
     
     .header-logo {
-        height: 55px;
+        height: 38px;
+        width: auto;
+        max-width: 150px;
+        object-fit: contain;
     }
     
     header.scrolled .header-logo {
-        height: 48px;
+        height: 32px;
     }
     
     .main-nav, .header-action { 
@@ -1764,7 +1770,7 @@ footer {
     
     /* Hero Section Mobile */
     .hero-section.hero-dark-cinematic {
-        padding: 8rem 0 6rem 0;
+        padding: 5.2rem 0 4rem 0;
     }
     
     .hero-badge {
