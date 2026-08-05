@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Superzzeros | Boutique Studio & Video Production</title>
+    <!-- Fonts: Syne (Bold Display), Playfair Display (Italic Accent Serif), Oswald (Headings), Inter (Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400;1,600;1,700;1,800&family=Syne:wght@700;800&family=Oswald:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+
+    <!-- Ambient Glowing Background Spotlight -->
+    <div class="ambient-glow" id="ambientGlow"></div>
+
+    <!-- Header Navigation -->
+    <header id="header" class="site-header">
+        <div class="nav-container">
+            <a href="#" class="logo-link">
+                <img src="SUPERZZEROS-LOGO.png" alt="Superzzeros Logo" class="header-logo">
+            </a>
+            <nav class="main-nav">
+                <ul class="nav-vertical-links">
+                    <li><a href="#home" class="nav-link active">HOME</a></li>
+                    <li><a href="#about" class="nav-link">ABOUT</a></li>
+                    <li><a href="#works" class="nav-link">PORTFOLIO</a></li>
+                    <li><a href="#services" class="nav-link">SERVICES</a></li>
+                    <li><a href="#contacts" class="nav-link">CONTACT</a></li>
+                </ul>
+            </nav>
+            <div class="header-action">
+                <a href="#contacts" class="btn-quote">GET A QUOTE</a>
+            </div>
+            <div class="mobile-menu-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Zoomoe Studio Style Hero Section (White Theme) -->
+        <section id="home" class="hero-section fade-wrapper hero-light-theme">
+
+            <!-- Slide Counters & Indicators -->
+            <div class="hero-controls">
+                <div class="hero-counter">
+                    <span class="current-num" id="currentSlideNum">01</span>
+                    <span class="total-num"> / 04</span>
+                </div>
+                <div class="hero-dots" id="heroDots">
+                    <button class="hero-dot active" data-index="0" aria-label="Go to Slide 1"></button>
+                    <button class="hero-dot" data-index="1" aria-label="Go to Slide 2"></button>
+                    <button class="hero-dot" data-index="2" aria-label="Go to Slide 3"></button>
+                    <button class="hero-dot" data-index="3" aria-label="Go to Slide 4"></button>
+                </div>
+            </div>
+
+            <!-- Scroll Cue -->
+            <div class="hero-scroll-cue">
+                <span>SCROLL TO EXPLORE</span>
+                <div class="cue-line"></div>
+            </div>
+
+            <!-- Slide 1 -->
+            <div class="fade-section active" data-slide="0">
+                <div class="hero-content-inner">
+                    <div class="hero-badge">SUPERZZEROS STUDIO</div>
+                    <h1 class="hero-editorial-title">
+                        WE CREATE <span class="font-accent">STUNNING</span> VISUALS
+                    </h1>
+                    <p class="hero-subtitle">High-end video production & cinematic storytelling.</p>
+                </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="fade-section" data-slide="1">
+                <div class="hero-content-inner">
+                    <h2 class="hero-editorial-statement">
+                        CRAFTING <span class="font-accent">EMOTIONS</span>
+                    </h2>
+                    <p class="hero-subtitle">Commercials, brand films, and visual effects.</p>
+                </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="fade-section" data-slide="2">
+                <div class="hero-content-inner">
+                    <h2 class="hero-editorial-statement">
+                        FOR <span class="font-accent">VISIONARIES</span>
+                    </h2>
+                    <p class="hero-subtitle">Empowering brands that dare to lead.</p>
+                </div>
+            </div>
+
+            <!-- Slide 4 -->
+            <div class="fade-section" data-slide="3">
+                <div class="hero-content-inner">
+                    <h2 class="hero-editorial-statement">
+                        LEAVING A <span class="font-accent">MARK</span>
+                    </h2>
+                    <p class="hero-subtitle">Unforgettable stories that echo forever.</p>
+                    <div class="hero-cta-wrapper">
+                        <a href="#works" class="btn-primary">EXPLORE WORK</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="services-section bg-dark">
+            <div class="container">
+                <div class="section-header">
+                    <h5 class="section-subtitle">WHAT WE DO</h5>
+                    <h2 class="section-title">OUR CORE EXPERTISE</h2>
+                </div>
+                
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">🎥</div>
+                        <h3>PRODUCTION</h3>
+                        <p>Full-scale video production for commercials, documentaries, and brand films with cinema-grade equipment.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">✂️</div>
+                        <h3>POST-PRODUCTION</h3>
+                        <p>Offline & online editing, color grading, and sound design to bring your story to life.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">✨</div>
+                        <h3>VFX & CGI</h3>
+                        <p>High-end visual effects, 3D animation, and motion graphics that push creative boundaries.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Works Section -->
+        <section id="works" class="works-section bg-black">
+            <div class="container">
+                <div class="section-header">
+                    <h5 class="section-subtitle">PORTFOLIO</h5>
+                    <h2 class="section-title">SELECTED PROJECTS</h2>
+                </div>
+                
+                <div class="works-grid masonry-layout">
+                    <div class="work-item large">
+                        <div class="work-image" style="background-image: url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=1925&auto=format&fit=crop');">
+                            <div class="work-overlay">
+                                <a href="#" class="small-play-btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></a>
+                                <div class="work-meta">
+                                    <p class="work-category">COMMERCIAL</p>
+                                    <h3>NEON HORIZON</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="work-item">
+                        <div class="work-image" style="background-image: url('https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=2071&auto=format&fit=crop');">
+                            <div class="work-overlay">
+                                <a href="#" class="small-play-btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></a>
+                                <div class="work-meta">
+                                    <p class="work-category">DOCUMENTARY</p>
+                                    <h3>THE ASCENT</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="work-item">
+                        <div class="work-image" style="background-image: url('https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?q=80&w=2056&auto=format&fit=crop');">
+                            <div class="work-overlay">
+                                <a href="#" class="small-play-btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></a>
+                                <div class="work-meta">
+                                    <p class="work-category">MUSIC VIDEO</p>
+                                    <h3>SONIC WAVES</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="work-item">
+                        <div class="work-image" style="background-image: url('https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?q=80&w=2070&auto=format&fit=crop');">
+                            <div class="work-overlay">
+                                <a href="#" class="small-play-btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></a>
+                                <div class="work-meta">
+                                    <p class="work-category">BRAND FILM</p>
+                                    <h3>URBAN KINETIC</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contacts Section -->
+        <section id="contacts" class="contacts-section bg-dark">
+            <div class="container">
+                <div class="contact-grid">
+                    <div class="contact-text">
+                        <h2 class="section-title">LET'S MAKE<br><span class="text-accent">MAGIC</span> TOGETHER.</h2>
+                        <p>Ready to start your next project? Get in touch with our team today.</p>
+                    </div>
+                    <div class="contact-info">
+                        <div class="info-block">
+                            <h4>EMAIL US</h4>
+                            <p>hello@superzzeros.com</p>
+                        </div>
+                        <div class="info-block">
+                            <h4>CALL US</h4>
+                            <p>+1 (555) 123-4567</p>
+                        </div>
+                        <div class="info-block">
+                            <h4>VISIT US</h4>
+                            <p>123 Creative Avenue, Design District, NY 10001</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-logo">
+                <img src="SUPERZZEROS-LOGO.png" alt="Superzzeros Logo" style="height: 40px; filter: invert(1); mix-blend-mode: screen;">
+            </div>
+            <p>&copy; 2026 Superzzeros. All Rights Reserved.</p>
+            <div class="social-links">
+                <a href="#">FB</a>
+                <a href="#">IG</a>
+                <a href="#">TW</a>
+                <a href="#">YT</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- GSAP & ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
