@@ -836,77 +836,258 @@ header.scrolled .mobile-menu-toggle span {
 }
 
 /* ====================================================
-   Services Section
+   Orionix-Style Orbital Dial Showcase Services Section
    ==================================================== */
-.services-grid {
+.orbital-showcase-section {
+    position: relative;
+    padding: 8rem 0;
+    overflow: hidden;
+}
+
+.orbital-showcase-wrapper {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 2.5rem;
+    grid-template-columns: 280px 1.2fr 1fr;
+    gap: 3.5rem;
+    align-items: center;
+    margin-top: 4rem;
+    position: relative;
 }
 
-.service-card {
-    padding: 2.5rem 2rem;
-    border: 1px solid var(--border-subtle);
-    background: var(--bg-black);
-    border-radius: var(--radius-md);
-    transition: var(--transition);
-    display: flex;
-    flex-direction: column;
-}
-
-.service-card:hover {
-    border-color: var(--accent);
-    transform: translateY(-8px);
-    background: var(--surface-card);
-    box-shadow: 0 15px 30px rgba(229, 9, 20, 0.15);
-}
-
-.service-icon-box {
-    width: 60px;
-    height: 60px;
-    border-radius: var(--radius-sm);
-    background: rgba(229, 9, 20, 0.1);
-    color: var(--accent);
+/* Left Arc Dial Panel */
+.orbital-arc-panel {
+    position: relative;
+    height: 520px;
     display: flex;
     align-items: center;
-    justify-content: center;
-    margin-bottom: 1.8rem;
 }
 
-.service-icon-box svg {
-    width: 30px;
-    height: 30px;
+.arc-svg-track {
+    position: absolute;
+    left: -20px;
+    top: 0;
+    width: 300px;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
 }
 
-.service-card h3 {
-    font-family: var(--font-heading);
-    font-size: 1.4rem;
-    margin-bottom: 1rem;
+.orbital-dial-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2.2rem;
+    position: relative;
+    z-index: 2;
+    padding-left: 2.5rem;
+}
+
+.dial-node {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    transition: var(--transition);
+    text-align: left;
+    padding: 0.4rem 0.8rem;
+    border-radius: var(--radius-full);
+}
+
+.dial-node:hover {
+    color: #ffffff;
+}
+
+.dial-node.active {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.node-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    transition: var(--transition);
+}
+
+.dial-node.active .node-dot {
+    background: var(--accent);
+    box-shadow: 0 0 15px var(--accent);
+    transform: scale(1.3);
+}
+
+.node-num {
+    font-family: "Geist", sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
     letter-spacing: 0.05em;
 }
 
-.service-card p {
-    color: var(--text-muted);
-    font-size: 0.95rem;
-    line-height: 1.6;
-    margin-bottom: 1.8rem;
-    flex-grow: 1;
-}
-
-.service-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-}
-
-.service-tags span {
-    font-size: 0.75rem;
+.node-label {
     font-family: var(--font-heading);
-    letter-spacing: 0.1em;
-    background: rgba(255, 255, 255, 0.05);
-    padding: 0.35rem 0.8rem;
-    border-radius: var(--radius-full);
+    font-size: 0.78rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+/* Center Active Service Display Card */
+.orbital-content-card {
+    background: var(--surface-card);
+    border: 1px solid var(--border-subtle);
+    padding: 3.5rem 3rem;
+    border-radius: var(--radius-lg);
+    box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+    position: relative;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.service-meta-badge {
+    font-family: var(--font-heading);
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    margin-bottom: 1.2rem;
+    text-transform: uppercase;
+}
+
+.orbital-service-title {
+    font-family: "Geist", sans-serif;
+    font-size: clamp(2rem, 3.8vw, 3.2rem);
+    font-weight: 700;
+    line-height: 0.95;
+    letter-spacing: -0.05em;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(90deg, #9499a3 0%, #ffffff 30%, #ffffff 70%, #595d66 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.orbital-service-desc {
     color: var(--text-muted);
+    font-size: 1.05rem;
+    line-height: 1.75;
+    margin-bottom: 2.2rem;
+}
+
+.orbital-tags {
+    margin-bottom: 2.5rem;
+}
+
+.orbital-tags span {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--border-subtle);
+    padding: 0.45rem 1rem;
+    font-size: 0.8rem;
+}
+
+/* Right 3D Visual Stage */
+.orbital-visual-stage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.sculpture-container {
+    width: 320px;
+    height: 320px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 800px;
+}
+
+.sculpture-ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1.5px dashed rgba(255, 255, 255, 0.15);
+    transition: transform 0.6s ease;
+}
+
+.sculpture-ring.ring-1 {
+    width: 300px;
+    height: 300px;
+    border-color: rgba(229, 9, 20, 0.25);
+    animation: rotate3dCW 25s infinite linear;
+}
+
+.sculpture-ring.ring-2 {
+    width: 230px;
+    height: 230px;
+    border-style: solid;
+    border-color: rgba(255, 255, 255, 0.12);
+    animation: rotate3dCCW 18s infinite linear;
+}
+
+.sculpture-ring.ring-3 {
+    width: 160px;
+    height: 160px;
+    border-style: dotted;
+    border-color: var(--accent);
+    animation: rotate3dCW 12s infinite linear;
+}
+
+.sculpture-center-core {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: var(--surface-card);
+    border: 1px solid var(--border-subtle);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent);
+    box-shadow: 0 0 35px var(--accent-glow);
+    z-index: 5;
+    transition: transform 0.4s ease;
+}
+
+.sculpture-center-core svg {
+    width: 40px;
+    height: 40px;
+}
+
+@keyframes rotate3dCW {
+    0% { transform: rotate(0deg) rotateX(20deg); }
+    100% { transform: rotate(360deg) rotateX(20deg); }
+}
+
+@keyframes rotate3dCCW {
+    0% { transform: rotate(360deg) rotateY(25deg); }
+    100% { transform: rotate(0deg) rotateY(25deg); }
+}
+
+/* Orbital Prev/Next Controls */
+.orbital-controls {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2.5rem;
+}
+
+.orbital-control-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 1px solid var(--border-subtle);
+    background: var(--surface-card);
+    color: #ffffff;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.orbital-control-btn:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    box-shadow: 0 0 20px var(--accent-glow);
+    transform: translateY(-2px);
 }
 
 /* ====================================================
@@ -1457,6 +1638,47 @@ footer {
         grid-template-columns: 1fr;
         gap: 1.8rem;
     }
+
+    /* Orbital Showcase Mobile */
+    .orbital-showcase-wrapper {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+    
+    .orbital-arc-panel {
+        height: auto;
+    }
+    
+    .arc-svg-track {
+        display: none;
+    }
+    
+    .orbital-dial-list {
+        flex-direction: row;
+        overflow-x: auto;
+        padding-left: 0;
+        gap: 0.8rem;
+        width: 100%;
+        scrollbar-width: none;
+    }
+    
+    .orbital-dial-list::-webkit-scrollbar {
+        display: none;
+    }
+    
+    .dial-node {
+        flex-shrink: 0;
+        white-space: nowrap;
+    }
+    
+    .sculpture-container {
+        width: 240px;
+        height: 240px;
+    }
+    
+    .sculpture-ring.ring-1 { width: 220px; height: 220px; }
+    .sculpture-ring.ring-2 { width: 170px; height: 170px; }
+    .sculpture-ring.ring-3 { width: 120px; height: 120px; }
 }
 
 @media (max-width: 768px) {

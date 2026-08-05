@@ -499,4 +499,159 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         );
     }
+
+    // ====================================================
+    // Orionix-Style Orbital Dial Services Showcase Controller
+    // ====================================================
+    const orbitalServices = [
+        {
+            num: "01",
+            title: "COMMERCIAL PRODUCTION & DIRECTING",
+            desc: "Full-scale video production for TV commercials, global digital campaigns, and brand films executed with cinema-grade anamorphic rigs.",
+            tags: ["Concepting", "Directing", "ARRI / RED 8K"],
+            iconSvg: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>'
+        },
+        {
+            num: "02",
+            title: "POST-PRODUCTION & CINEMA CUTS",
+            desc: "Offline & online editing, narrative rhythm cuts, DaVinci Resolve color grading, and Dolby Atmos surround audio mixing.",
+            tags: ["Editing", "Color Grading", "Sound Master"],
+            iconSvg: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>'
+        },
+        {
+            num: "03",
+            title: "VFX & 3D CGI SIMULATION",
+            desc: "High-end visual effects, photorealistic 3D asset rendering, liquid/particle simulation, and seamless green-screen compositing.",
+            tags: ["3D Motion", "CGI Simulation", "Compositing"],
+            iconSvg: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>'
+        },
+        {
+            num: "04",
+            title: "MUSIC VIDEOS & DOCU-FILMS",
+            desc: "Visually arresting music video direction and high-impact documentary storytelling that captures global audiences.",
+            tags: ["Artist Vision", "On-Location", "Docu-Series"],
+            iconSvg: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18V5l12-2v13M9 9l12-2"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>'
+        },
+        {
+            num: "05",
+            title: "BRAND FILM & VISUAL IDENTITY",
+            desc: "Strategic narrative films that encapsulate brand heritage, high-profile product launches, and executive vision with emotional punch.",
+            tags: ["Brand Identity", "Executive Film", "Launch Film"],
+            iconSvg: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>'
+        },
+        {
+            num: "06",
+            title: "CREATIVE DIRECTION & ART",
+            desc: "End-to-end creative supervision, storyboarding, art direction, scene design, and moodboard curation for iconic campaigns.",
+            tags: ["Storyboarding", "Art Direction", "Lookbooks"],
+            iconSvg: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>'
+        }
+    ];
+
+    const dialNodes = document.querySelectorAll('.dial-node');
+    const orbitalContentCard = document.getElementById('orbitalContentCard');
+    const orbitalCurrentIndex = document.getElementById('orbitalCurrentIndex');
+    const orbitalTitle = document.getElementById('orbitalTitle');
+    const orbitalDesc = document.getElementById('orbitalDesc');
+    const orbitalTags = document.getElementById('orbitalTags');
+    const sculptureCore = document.getElementById('sculptureCore');
+    const sculpture3D = document.getElementById('sculpture3D');
+    const prevOrbitalBtn = document.getElementById('prevOrbitalBtn');
+    const nextOrbitalBtn = document.getElementById('nextOrbitalBtn');
+
+    if (dialNodes.length > 0 && orbitalContentCard) {
+        let currentOrbitalIndex = 0;
+        let isOrbitalAnimating = false;
+
+        const updateOrbitalShowcase = (index) => {
+            if (isOrbitalAnimating || index === currentOrbitalIndex) return;
+            isOrbitalAnimating = true;
+
+            const service = orbitalServices[index];
+
+            // Update active state on dial nodes
+            dialNodes.forEach((node, i) => {
+                if (i === index) node.classList.add('active');
+                else node.classList.remove('active');
+            });
+
+            // GSAP Transition
+            if (typeof gsap !== 'undefined') {
+                gsap.to(orbitalContentCard, {
+                    opacity: 0,
+                    y: 15,
+                    duration: 0.25,
+                    ease: "power2.in",
+                    onComplete: () => {
+                        if (orbitalCurrentIndex) orbitalCurrentIndex.textContent = service.num;
+                        if (orbitalTitle) orbitalTitle.textContent = service.title;
+                        if (orbitalDesc) orbitalDesc.textContent = service.desc;
+                        if (sculptureCore) sculptureCore.innerHTML = service.iconSvg;
+                        
+                        if (orbitalTags) {
+                            orbitalTags.innerHTML = service.tags.map(t => `<span>${t}</span>`).join('');
+                        }
+
+                        gsap.to(orbitalContentCard, {
+                            opacity: 1,
+                            y: 0,
+                            duration: 0.45,
+                            ease: "power3.out"
+                        });
+                    }
+                });
+
+                // 3D Sculpture rotation burst
+                if (sculpture3D) {
+                    gsap.to(sculpture3D, {
+                        rotateY: `+=${60}`,
+                        scale: 1.1,
+                        duration: 0.3,
+                        ease: "power2.out",
+                        yoyo: true,
+                        repeat: 1,
+                        onComplete: () => { isOrbitalAnimating = false; }
+                    });
+                } else {
+                    setTimeout(() => { isOrbitalAnimating = false; }, 350);
+                }
+            } else {
+                if (orbitalCurrentIndex) orbitalCurrentIndex.textContent = service.num;
+                if (orbitalTitle) orbitalTitle.textContent = service.title;
+                if (orbitalDesc) orbitalDesc.textContent = service.desc;
+                if (sculptureCore) sculptureCore.innerHTML = service.iconSvg;
+                if (orbitalTags) {
+                    orbitalTags.innerHTML = service.tags.map(t => `<span>${t}</span>`).join('');
+                }
+                isOrbitalAnimating = false;
+            }
+
+            currentOrbitalIndex = index;
+        };
+
+        // Dial click listener
+        dialNodes.forEach((node) => {
+            node.addEventListener('click', () => {
+                const targetIdx = parseInt(node.getAttribute('data-index'), 10);
+                if (!isNaN(targetIdx)) {
+                    updateOrbitalShowcase(targetIdx);
+                }
+            });
+        });
+
+        // Prev/Next arrows
+        if (prevOrbitalBtn) {
+            prevOrbitalBtn.addEventListener('click', () => {
+                const prevIndex = (currentOrbitalIndex - 1 + orbitalServices.length) % orbitalServices.length;
+                updateOrbitalShowcase(prevIndex);
+            });
+        }
+
+        if (nextOrbitalBtn) {
+            nextOrbitalBtn.addEventListener('click', () => {
+                const nextIndex = (currentOrbitalIndex + 1) % orbitalServices.length;
+                updateOrbitalShowcase(nextIndex);
+            });
+        }
+    }
 });

@@ -225,90 +225,87 @@
             </div>
         </section>
 
-        <!-- Services Section -->
-        <section id="services" class="services-section bg-dark">
+        <!-- Services Section (Orionix Orbital Dial Showcase) -->
+        <section id="services" class="services-section bg-dark orbital-showcase-section">
             <div class="container">
-                <div class="section-header">
+                <div class="section-header text-center">
                     <h5 class="section-subtitle">WHAT WE DO</h5>
                     <h2 class="section-title">OUR CORE EXPERTISE</h2>
                 </div>
-                
-                <div class="services-grid">
-                    <div class="service-card">
-                        <div class="service-icon-box">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+
+                <div class="orbital-showcase-wrapper">
+                    <!-- Left Arc Dial Track -->
+                    <div class="orbital-arc-panel">
+                        <svg class="arc-svg-track" viewBox="0 0 300 600" fill="none">
+                            <path class="arc-path-bg" d="M 40 30 A 350 350 0 0 1 40 570" stroke="rgba(255, 255, 255, 0.12)" stroke-width="1.5" stroke-dasharray="6 6" />
+                        </svg>
+
+                        <div class="orbital-dial-list">
+                            <button class="dial-node active" data-index="0">
+                                <span class="node-dot"></span>
+                                <span class="node-num">01</span>
+                                <span class="node-label">COMMERCIALS</span>
+                            </button>
+                            <button class="dial-node" data-index="1">
+                                <span class="node-dot"></span>
+                                <span class="node-num">02</span>
+                                <span class="node-label">POST-PRODUCTION</span>
+                            </button>
+                            <button class="dial-node" data-index="2">
+                                <span class="node-dot"></span>
+                                <span class="node-num">03</span>
+                                <span class="node-label">VFX &amp; 3D</span>
+                            </button>
+                            <button class="dial-node" data-index="3">
+                                <span class="node-dot"></span>
+                                <span class="node-num">04</span>
+                                <span class="node-label">MUSIC VIDEOS</span>
+                            </button>
+                            <button class="dial-node" data-index="4">
+                                <span class="node-dot"></span>
+                                <span class="node-num">05</span>
+                                <span class="node-label">BRAND FILMS</span>
+                            </button>
+                            <button class="dial-node" data-index="5">
+                                <span class="node-dot"></span>
+                                <span class="node-num">06</span>
+                                <span class="node-label">CREATIVE DIR</span>
+                            </button>
                         </div>
-                        <h3>COMMERCIAL PRODUCTION</h3>
-                        <p>Full-scale video production for TV commercials, digital campaigns, and brand films executed with cinema-grade rigs.</p>
-                        <div class="service-tags">
+                    </div>
+
+                    <!-- Center Active Service Display -->
+                    <div class="orbital-content-card" id="orbitalContentCard">
+                        <div class="service-meta-badge">SERVICE <span id="orbitalCurrentIndex">01</span> / 06</div>
+                        <h3 class="orbital-service-title" id="orbitalTitle">COMMERCIAL PRODUCTION &amp; DIRECTING</h3>
+                        <p class="orbital-service-desc" id="orbitalDesc">Full-scale video production for TV commercials, global digital campaigns, and brand films executed with cinema-grade anamorphic rigs.</p>
+                        
+                        <div class="service-tags orbital-tags" id="orbitalTags">
                             <span>Concepting</span>
                             <span>Directing</span>
-                            <span>ARRI/RED 8K</span>
+                            <span>ARRI / RED 8K</span>
+                        </div>
+
+                        <div class="orbital-card-actions">
+                            <button type="button" class="btn-quote modal-trigger" data-modal="quoteModal">REQUEST QUOTE FOR THIS SERVICE</button>
                         </div>
                     </div>
 
-                    <div class="service-card">
-                        <div class="service-icon-box">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                    <!-- Right 3D Animated Sculpture Visual -->
+                    <div class="orbital-visual-stage">
+                        <div class="sculpture-container" id="sculpture3D">
+                            <div class="sculpture-ring ring-1"></div>
+                            <div class="sculpture-ring ring-2"></div>
+                            <div class="sculpture-ring ring-3"></div>
+                            <div class="sculpture-center-core" id="sculptureCore">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+                            </div>
                         </div>
-                        <h3>POST-PRODUCTION & EDITING</h3>
-                        <p>Offline & online editing, narrative rhythm cuts, DaVinci Resolve color grading, and Dolby Atmos audio mixing.</p>
-                        <div class="service-tags">
-                            <span>Editing</span>
-                            <span>Color Grading</span>
-                            <span>Sound Master</span>
-                        </div>
-                    </div>
 
-                    <div class="service-card">
-                        <div class="service-icon-box">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                        </div>
-                        <h3>VFX & 3D ANIMATION</h3>
-                        <p>High-end visual effects, photorealistic 3D asset rendering, liquid simulation, and seamless camera compositing.</p>
-                        <div class="service-tags">
-                            <span>3D Motion</span>
-                            <span>CGI Simulation</span>
-                            <span>Compositing</span>
-                        </div>
-                    </div>
-
-                    <div class="service-card">
-                        <div class="service-icon-box">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18V5l12-2v13M9 9l12-2"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
-                        </div>
-                        <h3>MUSIC VIDEOS & DOCS</h3>
-                        <p>Visually arresting music video direction and high-impact documentary filmmaking that connects with global audiences.</p>
-                        <div class="service-tags">
-                            <span>Artist Vision</span>
-                            <span>On-Location</span>
-                            <span>Docu-Series</span>
-                        </div>
-                    </div>
-
-                    <div class="service-card">
-                        <div class="service-icon-box">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
-                        </div>
-                        <h3>BRAND FILM IDENTITY</h3>
-                        <p>Strategic narrative films that encapsulate brand heritage, product launches, and corporate vision with emotional punch.</p>
-                        <div class="service-tags">
-                            <span>Brand Identity</span>
-                            <span>Executive Film</span>
-                            <span>Launch Film</span>
-                        </div>
-                    </div>
-
-                    <div class="service-card">
-                        <div class="service-icon-box">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
-                        </div>
-                        <h3>CREATIVE DIRECTION</h3>
-                        <p>End-to-end creative supervision, storyboarding, art direction, and moodboard curation for premium campaigns.</p>
-                        <div class="service-tags">
-                            <span>Storyboarding</span>
-                            <span>Art Direction</span>
-                            <span>Lookbooks</span>
+                        <!-- Prev/Next Controls -->
+                        <div class="orbital-controls">
+                            <button class="orbital-control-btn" id="prevOrbitalBtn" aria-label="Previous Service">&larr;</button>
+                            <button class="orbital-control-btn" id="nextOrbitalBtn" aria-label="Next Service">&rarr;</button>
                         </div>
                     </div>
                 </div>
