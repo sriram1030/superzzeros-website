@@ -534,10 +534,10 @@ header.scrolled .mobile-menu-toggle span {
     display: inline-flex;
     align-items: center;
     gap: 1.2rem;
-    background: rgba(255, 255, 255, 0.07);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.03) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     padding: 0.8rem 1.8rem 0.8rem 1rem;
-    border-radius: 50px;
+    border-radius: var(--radius-full);
     color: #ffffff;
     transition: var(--transition);
     backdrop-filter: blur(12px);
@@ -600,7 +600,8 @@ header.scrolled .mobile-menu-toggle span {
     font-weight: 700;
     color: var(--text-light);
     padding: 1.1rem 2.2rem;
-    border: 1px solid var(--border-subtle);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%);
     border-radius: var(--radius-full);
     transition: var(--transition);
 }
@@ -618,11 +619,12 @@ header.scrolled .mobile-menu-toggle span {
     align-items: center;
     justify-content: center;
     gap: 3rem;
-    background: rgba(24, 24, 31, 0.6);
-    border: 1px solid var(--border-subtle);
+    background: linear-gradient(135deg, rgba(24, 24, 31, 0.8) 0%, rgba(18, 18, 22, 0.5) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.15);
     padding: 1.2rem 3.5rem;
-    border-radius: 60px;
+    border-radius: var(--radius-full);
     backdrop-filter: blur(16px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
 }
 
 .quick-stat-item {
@@ -633,10 +635,13 @@ header.scrolled .mobile-menu-toggle span {
 
 .qs-num {
     font-family: "Geist", sans-serif;
-    font-size: 2rem;
+    font-size: 2.2rem;
     font-weight: 700;
-    color: #ffffff;
     line-height: 1;
+    background: linear-gradient(90deg, #9499a3 0%, #ffffff 35%, #ffffff 70%, #595d66 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .qs-label {
