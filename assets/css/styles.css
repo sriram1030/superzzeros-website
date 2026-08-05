@@ -12,8 +12,8 @@
     --accent: #E50914; /* Brand Red Accent */
     --accent-glow: rgba(229, 9, 20, 0.4);
     
-    --font-heading: 'Oswald', sans-serif;
-    --font-display: 'Syne', sans-serif;
+    --font-heading: 'Geist', sans-serif;
+    --font-display: 'Geist', sans-serif;
     --font-accent: 'Playfair Display', serif;
     --font-body: 'Inter', sans-serif;
     
@@ -102,11 +102,12 @@ section {
 }
 
 .section-title {
-    font-family: var(--font-heading);
+    font-family: "Geist", sans-serif;
+    font-weight: 700;
     font-size: clamp(2.4rem, 4.5vw, 4rem);
-    line-height: 1.15;
+    line-height: 0.92;
     text-transform: uppercase;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.06em;
 }
 
 /* Ambient Glow Spotlight */
@@ -437,14 +438,14 @@ header.scrolled .mobile-menu-toggle span {
 }
 
 .hero-editorial-title, .hero-editorial-statement {
-    font-family: var(--font-display);
+    font-family: "Geist", sans-serif;
     font-size: clamp(2.3rem, 5vw, 4.8rem);
-    font-weight: 800;
-    line-height: 1.15;
+    font-weight: 700;
+    line-height: 0.92;
     color: #111111;
     margin-bottom: 1rem;
     text-transform: uppercase;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.06em;
 }
 
 .font-accent {
@@ -1173,8 +1174,11 @@ footer {
 }
 
 .modal-video-title {
-    font-family: var(--font-heading);
+    font-family: "Geist", sans-serif;
+    font-weight: 700;
     font-size: 2rem;
+    line-height: 0.92;
+    letter-spacing: -0.06em;
 }
 
 .video-iframe-wrapper {
@@ -1212,8 +1216,11 @@ footer {
 }
 
 .modal-title {
-    font-family: var(--font-heading);
+    font-family: "Geist", sans-serif;
+    font-weight: 700;
     font-size: 2.2rem;
+    line-height: 0.92;
+    letter-spacing: -0.06em;
     margin-bottom: 0.5rem;
 }
 
