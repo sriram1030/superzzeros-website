@@ -836,7 +836,7 @@ header.scrolled .mobile-menu-toggle span {
 }
 
 /* ====================================================
-   Orionix-Style Orbital Dial Showcase Services Section
+   Orionix-Style Circular Rotating Dial Showcase Services
    ==================================================== */
 .orbital-showcase-section {
     position: relative;
@@ -846,75 +846,95 @@ header.scrolled .mobile-menu-toggle span {
 
 .orbital-showcase-wrapper {
     display: grid;
-    grid-template-columns: 280px 1.2fr 1fr;
-    gap: 3.5rem;
+    grid-template-columns: 460px 1fr;
+    gap: 4rem;
     align-items: center;
     margin-top: 4rem;
     position: relative;
 }
 
-/* Left Arc Dial Panel */
+/* Left Circular Rotating Arc Dial Wheel */
 .orbital-arc-panel {
     position: relative;
-    height: 520px;
+    height: 500px;
+    width: 460px;
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
-.arc-svg-track {
-    position: absolute;
-    left: -20px;
-    top: 0;
-    width: 300px;
+.circular-dial-wheel {
+    width: 480px;
+    height: 480px;
+    border-radius: 50%;
+    position: relative;
+    transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.arc-svg-ring {
+    width: 100%;
     height: 100%;
+    position: absolute;
+    inset: 0;
     pointer-events: none;
-    z-index: 1;
+}
+
+.ring-progress-bar {
+    transition: stroke-dashoffset 0.7s ease;
 }
 
 .orbital-dial-list {
-    display: flex;
-    flex-direction: column;
-    gap: 2.2rem;
-    position: relative;
-    z-index: 2;
-    padding-left: 2.5rem;
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
 }
 
 .dial-node {
+    position: absolute;
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 0.8rem;
     background: transparent;
     border: none;
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.45);
     cursor: pointer;
     transition: var(--transition);
-    text-align: left;
-    padding: 0.4rem 0.8rem;
+    padding: 0.5rem 1.1rem;
     border-radius: var(--radius-full);
+    white-space: nowrap;
 }
+
+/* Radially positioned dial nodes */
+.dial-node[data-index="0"] { top: 3%; left: 50%; transform: translateX(-50%); }
+.dial-node[data-index="1"] { top: 25%; right: 2%; }
+.dial-node[data-index="2"] { bottom: 25%; right: 2%; }
+.dial-node[data-index="3"] { bottom: 3%; left: 50%; transform: translateX(-50%); }
+.dial-node[data-index="4"] { bottom: 25%; left: 2%; }
+.dial-node[data-index="5"] { top: 25%; left: 2%; }
 
 .dial-node:hover {
     color: #ffffff;
+    background: rgba(255, 255, 255, 0.06);
 }
 
 .dial-node.active {
     color: #ffffff;
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 20px rgba(0,0,0,0.4);
 }
 
 .node-dot {
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.25);
     transition: var(--transition);
 }
 
 .dial-node.active .node-dot {
     background: var(--accent);
     box-shadow: 0 0 15px var(--accent);
-    transform: scale(1.3);
+    transform: scale(1.4);
 }
 
 .node-num {
@@ -931,15 +951,22 @@ header.scrolled .mobile-menu-toggle span {
     text-transform: uppercase;
 }
 
-/* Center Active Service Display Card */
+/* Right Active Service Display Card */
 .orbital-content-card {
     background: var(--surface-card);
     border: 1px solid var(--border-subtle);
-    padding: 3.5rem 3rem;
+    padding: 3.8rem 3.2rem;
     border-radius: var(--radius-lg);
     box-shadow: 0 25px 60px rgba(0,0,0,0.5);
     position: relative;
     transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.orbital-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.8rem;
 }
 
 .service-meta-badge {
@@ -947,17 +974,16 @@ header.scrolled .mobile-menu-toggle span {
     font-size: 0.8rem;
     letter-spacing: 0.2em;
     color: var(--accent);
-    margin-bottom: 1.2rem;
     text-transform: uppercase;
 }
 
 .orbital-service-title {
     font-family: "Geist", sans-serif;
-    font-size: clamp(2rem, 3.8vw, 3.2rem);
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
     font-weight: 700;
     line-height: 0.95;
     letter-spacing: -0.05em;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.6rem;
     background: linear-gradient(90deg, #9499a3 0%, #ffffff 30%, #ffffff 70%, #595d66 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -966,7 +992,7 @@ header.scrolled .mobile-menu-toggle span {
 
 .orbital-service-desc {
     color: var(--text-muted);
-    font-size: 1.05rem;
+    font-size: 1.08rem;
     line-height: 1.75;
     margin-bottom: 2.2rem;
 }
@@ -978,104 +1004,24 @@ header.scrolled .mobile-menu-toggle span {
 .orbital-tags span {
     background: rgba(255, 255, 255, 0.06);
     border: 1px solid var(--border-subtle);
-    padding: 0.45rem 1rem;
-    font-size: 0.8rem;
-}
-
-/* Right 3D Visual Stage */
-.orbital-visual-stage {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-}
-
-.sculpture-container {
-    width: 320px;
-    height: 320px;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    perspective: 800px;
-}
-
-.sculpture-ring {
-    position: absolute;
-    border-radius: 50%;
-    border: 1.5px dashed rgba(255, 255, 255, 0.15);
-    transition: transform 0.6s ease;
-}
-
-.sculpture-ring.ring-1 {
-    width: 300px;
-    height: 300px;
-    border-color: rgba(229, 9, 20, 0.25);
-    animation: rotate3dCW 25s infinite linear;
-}
-
-.sculpture-ring.ring-2 {
-    width: 230px;
-    height: 230px;
-    border-style: solid;
-    border-color: rgba(255, 255, 255, 0.12);
-    animation: rotate3dCCW 18s infinite linear;
-}
-
-.sculpture-ring.ring-3 {
-    width: 160px;
-    height: 160px;
-    border-style: dotted;
-    border-color: var(--accent);
-    animation: rotate3dCW 12s infinite linear;
-}
-
-.sculpture-center-core {
-    width: 90px;
-    height: 90px;
-    border-radius: 50%;
-    background: var(--surface-card);
-    border: 1px solid var(--border-subtle);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--accent);
-    box-shadow: 0 0 35px var(--accent-glow);
-    z-index: 5;
-    transition: transform 0.4s ease;
-}
-
-.sculpture-center-core svg {
-    width: 40px;
-    height: 40px;
-}
-
-@keyframes rotate3dCW {
-    0% { transform: rotate(0deg) rotateX(20deg); }
-    100% { transform: rotate(360deg) rotateX(20deg); }
-}
-
-@keyframes rotate3dCCW {
-    0% { transform: rotate(360deg) rotateY(25deg); }
-    100% { transform: rotate(0deg) rotateY(25deg); }
+    padding: 0.45rem 1.1rem;
+    font-size: 0.82rem;
 }
 
 /* Orbital Prev/Next Controls */
 .orbital-controls {
     display: flex;
-    gap: 1rem;
-    margin-top: 2.5rem;
+    gap: 0.8rem;
 }
 
 .orbital-control-btn {
-    width: 48px;
-    height: 48px;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
     border: 1px solid var(--border-subtle);
-    background: var(--surface-card);
+    background: rgba(255, 255, 255, 0.05);
     color: #ffffff;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     display: flex;
     align-items: center;
     justify-content: center;

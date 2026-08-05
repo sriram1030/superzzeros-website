@@ -548,14 +548,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     ];
 
+    const circularDialWheel = document.getElementById('circularDialWheel');
     const dialNodes = document.querySelectorAll('.dial-node');
     const orbitalContentCard = document.getElementById('orbitalContentCard');
     const orbitalCurrentIndex = document.getElementById('orbitalCurrentIndex');
     const orbitalTitle = document.getElementById('orbitalTitle');
     const orbitalDesc = document.getElementById('orbitalDesc');
     const orbitalTags = document.getElementById('orbitalTags');
-    const sculptureCore = document.getElementById('sculptureCore');
-    const sculpture3D = document.getElementById('sculpture3D');
     const prevOrbitalBtn = document.getElementById('prevOrbitalBtn');
     const nextOrbitalBtn = document.getElementById('nextOrbitalBtn');
 
@@ -569,24 +568,44 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const service = orbitalServices[index];
 
+            // 1. Physical Circular Rotation Animation on Dial Wheel
+            const rotationAngle = - (index * 60);
+            if (circularDialWheel && typeof gsap !== 'undefined') {
+                gsap.to(circularDialWheel, {
+                    rotation: rotationAngle,
+                    duration: 0.7,
+                    ease: "power3.out"
+                });
+
+                // Counter-rotate nodes so text stays upright
+                dialNodes.forEach((node) => {
+                    gsap.to(node, {
+                        rotation: -rotationAngle,
+                        duration: 0.7,
+                        ease: "power3.out"
+                    });
+                });
+            } else if (circularDialWheel) {
+                circularDialWheel.style.transform = `rotate(${rotationAngle}deg)`;
+            }
+
             // Update active state on dial nodes
             dialNodes.forEach((node, i) => {
                 if (i === index) node.classList.add('active');
                 else node.classList.remove('active');
             });
 
-            // GSAP Transition
+            // 2. Content Card Transition
             if (typeof gsap !== 'undefined') {
                 gsap.to(orbitalContentCard, {
                     opacity: 0,
-                    y: 15,
+                    x: 20,
                     duration: 0.25,
                     ease: "power2.in",
                     onComplete: () => {
                         if (orbitalCurrentIndex) orbitalCurrentIndex.textContent = service.num;
                         if (orbitalTitle) orbitalTitle.textContent = service.title;
                         if (orbitalDesc) orbitalDesc.textContent = service.desc;
-                        if (sculptureCore) sculptureCore.innerHTML = service.iconSvg;
                         
                         if (orbitalTags) {
                             orbitalTags.innerHTML = service.tags.map(t => `<span>${t}</span>`).join('');
@@ -594,32 +613,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
                         gsap.to(orbitalContentCard, {
                             opacity: 1,
-                            y: 0,
+                            x: 0,
                             duration: 0.45,
-                            ease: "power3.out"
+                            ease: "power3.out",
+                            onComplete: () => { isOrbitalAnimating = false; }
                         });
                     }
                 });
-
-                // 3D Sculpture rotation burst
-                if (sculpture3D) {
-                    gsap.to(sculpture3D, {
-                        rotateY: `+=${60}`,
-                        scale: 1.1,
-                        duration: 0.3,
-                        ease: "power2.out",
-                        yoyo: true,
-                        repeat: 1,
-                        onComplete: () => { isOrbitalAnimating = false; }
-                    });
-                } else {
-                    setTimeout(() => { isOrbitalAnimating = false; }, 350);
-                }
             } else {
                 if (orbitalCurrentIndex) orbitalCurrentIndex.textContent = service.num;
                 if (orbitalTitle) orbitalTitle.textContent = service.title;
                 if (orbitalDesc) orbitalDesc.textContent = service.desc;
-                if (sculptureCore) sculptureCore.innerHTML = service.iconSvg;
                 if (orbitalTags) {
                     orbitalTags.innerHTML = service.tags.map(t => `<span>${t}</span>`).join('');
                 }
