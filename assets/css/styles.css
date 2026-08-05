@@ -1592,21 +1592,24 @@ footer {
         gap: 1.8rem;
     }
 
-    /* Orbital Showcase Mobile & Tablet */
+    /* Orbital Showcase Mobile & Tablet Redesign */
     .orbital-showcase-section {
-        padding: 4.5rem 0 3rem 0;
+        padding: 4rem 0 3rem 0;
         min-height: auto;
     }
 
     .orbital-showcase-wrapper {
         grid-template-columns: 1fr;
-        gap: 1.8rem;
-        margin-top: 1.8rem;
+        gap: 1.5rem;
+        margin-top: 1.5rem;
+        width: 100%;
+        box-sizing: border-box;
     }
     
     .orbital-arc-panel {
         height: auto;
         width: 100%;
+        box-sizing: border-box;
     }
 
     .circular-dial-wheel {
@@ -1627,9 +1630,14 @@ footer {
         flex-direction: row !important;
         overflow-x: auto !important;
         -webkit-overflow-scrolling: touch;
-        padding: 0.4rem 0.2rem !important;
-        gap: 0.6rem !important;
+        scroll-snap-type: x mandatory;
+        padding: 0.4rem !important;
+        gap: 0.5rem !important;
         width: 100% !important;
+        box-sizing: border-box !important;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid var(--border-subtle);
+        border-radius: var(--radius-full);
         scrollbar-width: none;
         z-index: 10;
     }
@@ -1646,32 +1654,87 @@ footer {
         right: auto !important;
         transform: none !important;
         flex-shrink: 0 !important;
+        scroll-snap-align: center;
         white-space: nowrap !important;
-        padding: 0.6rem 1.2rem !important;
-        font-size: 0.82rem !important;
+        padding: 0.5rem 1rem !important;
+        font-size: 0.78rem !important;
+        border-radius: var(--radius-full) !important;
+        color: rgba(255, 255, 255, 0.5) !important;
+        background: transparent !important;
+        transition: all 0.3s ease !important;
         cursor: pointer;
         z-index: 10;
         pointer-events: auto !important;
         touch-action: manipulation;
     }
 
+    .dial-node.active {
+        color: #ffffff !important;
+        background: var(--accent) !important;
+        box-shadow: 0 0 15px var(--accent-glow) !important;
+    }
+
+    .dial-node.active .node-dot {
+        background: #ffffff !important;
+        box-shadow: none !important;
+    }
+
     .orbital-content-card {
-        padding: 2rem 1.4rem;
-        width: 100%;
+        padding: 1.8rem 1.25rem !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+        overflow: hidden !important;
+        border-radius: var(--radius-md) !important;
     }
 
-    .orbital-service-title {
-        font-size: clamp(1.6rem, 5.5vw, 2.4rem);
-        margin-bottom: 0.8rem;
-    }
-
-    .orbital-service-desc {
-        font-size: 0.95rem;
+    .orbital-card-top {
         margin-bottom: 1.2rem;
     }
 
+    .orbital-service-title {
+        font-size: clamp(1.35rem, 5vw, 1.8rem) !important;
+        line-height: 1.15 !important;
+        word-break: break-word !important;
+        overflow-wrap: break-word !important;
+        hyphens: auto !important;
+        margin-bottom: 1rem !important;
+        max-width: 100% !important;
+    }
+
+    .orbital-service-desc {
+        font-size: 0.9rem !important;
+        line-height: 1.55 !important;
+        margin-bottom: 1.2rem !important;
+    }
+
     .orbital-tags {
-        margin-bottom: 1.5rem;
+        display: flex !important;
+        flex-wrap: wrap !important;
+        gap: 0.4rem !important;
+        margin-bottom: 1.5rem !important;
+    }
+
+    .orbital-tags span {
+        font-size: 0.75rem !important;
+        padding: 0.35rem 0.75rem !important;
+        border-radius: var(--radius-sm) !important;
+    }
+
+    .orbital-card-actions {
+        width: 100% !important;
+    }
+
+    .orbital-card-actions .btn-quote {
+        width: 100% !important;
+        padding: 0.85rem 1rem !important;
+        font-size: 0.78rem !important;
+        letter-spacing: 0.06em !important;
+        text-align: center !important;
+        white-space: normal !important;
+        word-break: break-word !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
     }
 }
 
