@@ -1547,6 +1547,11 @@ footer {
     font-size: 1.2rem;
 }
 
+/* Global Default: Hide Mobile Bento Grid on Desktop */
+.mobile-services-bento {
+    display: none !important;
+}
+
 /* ====================================================
    Comprehensive Responsive Styles & Mobile Optimization
    ==================================================== */
@@ -1595,12 +1600,6 @@ footer {
         gap: 1.8rem;
     }
 
-/* Mobile Bento Grid default hidden on Desktop */
-.mobile-services-bento {
-    display: none;
-}
-
-@media (max-width: 992px) {
     /* Hide desktop orbital dial showcase on mobile/tablet */
     .orbital-showcase-wrapper {
         display: none !important;
@@ -1611,9 +1610,9 @@ footer {
         min-height: auto;
     }
 
-    /* Mobile Bento Grid Layout (<992px) */
+    /* Show Mobile Bento Grid Layout on Mobile/Tablet (<992px) */
     .mobile-services-bento {
-        display: grid;
+        display: grid !important;
         grid-template-columns: 1fr;
         gap: 1.4rem;
         margin-top: 2rem;
