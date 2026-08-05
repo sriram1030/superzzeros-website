@@ -1886,7 +1886,15 @@ footer {
         border-color: var(--accent);
         box-shadow: 0 0 15px var(--accent-glow);
     }
-}
+
+    /* Header & Mobile Menu for Tablet/Mobile (<992px) */
+    .main-nav, .header-action { 
+        display: none !important; 
+    }
+    
+    .mobile-menu-toggle { 
+        display: block !important; 
+    }
 }
 
 @media (max-width: 768px) {
@@ -1908,14 +1916,6 @@ footer {
     
     header.scrolled .header-logo {
         height: 32px;
-    }
-    
-    .main-nav, .header-action { 
-        display: none; 
-    }
-    
-    .mobile-menu-toggle { 
-        display: block; 
     }
     
     /* Hero Section Mobile */
