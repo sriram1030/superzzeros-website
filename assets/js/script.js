@@ -11,8 +11,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (typeof Lenis !== 'undefined') {
         lenis = new Lenis({
-            duration: 1.2,
-            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Smooth exponential inertia curve
+            duration: 1.1,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Exponential inertia curve
             direction: 'vertical',
             gestureDirection: 'vertical',
             smoothWheel: true,
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ====================================================
-    // 1. Zoomoe Studio Hero Controller (Multi-Slide Fade)
+    // 1. Ultra-Smooth Lag-Free Hero Controller
     // ====================================================
     const heroWrapper = document.querySelector('.fade-wrapper');
     const heroSlides = document.querySelectorAll('.fade-section');
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (heroWrapper && heroSlides.length > 0) {
         let currentSlide = 0;
         let isAnimating = false;
-        let allowPageScrollOnce = false;
+        let slideCooldown = false;
 
         // Initialize first slide state
         heroSlides.forEach((slide, idx) => {
@@ -52,64 +52,33 @@ document.addEventListener('DOMContentLoaded', () => {
             else slide.classList.remove('active');
         });
 
-        // Lock/unlock body scroll for hero slides
-        const setBodyLock = (lock) => {
-            if (lock && !allowPageScrollOnce) {
-                document.body.classList.add('lock-scroll');
-                if (lenis) lenis.stop();
-            } else {
-                document.body.classList.remove('lock-scroll');
-                if (lenis) lenis.start();
-            }
-        };
-
-        // Observe Hero wrapper in viewport
-        const heroObserver = new IntersectionObserver((entries) => {
-            const entry = entries[0];
-            if (entry.isIntersecting && currentSlide < heroSlides.length - 1 && currentSlide >= 0) {
-                setBodyLock(true);
-            }
-        }, { threshold: 0.5 });
-
-        heroObserver.observe(heroWrapper);
-
-        // Core Slide Transition Function
+        // Core Slide Transition Function (Fast & Hardware Accelerated)
         const goToSlide = (targetIndex) => {
-            if (isAnimating) return;
+            if (isAnimating || slideCooldown) return false;
 
-            // Slide boundaries check
+            // Boundaries check
             if (targetIndex >= heroSlides.length) {
-                allowPageScrollOnce = true;
-                setBodyLock(false);
-                isAnimating = true;
-                setTimeout(() => { isAnimating = false; }, 400);
-
                 const nextSection = document.getElementById('about') || document.getElementById('services');
                 if (nextSection) {
                     if (lenis) {
-                        lenis.scrollTo(nextSection, { offset: -70, duration: 1.2 });
+                        lenis.scrollTo(nextSection, { offset: -70, duration: 1.1 });
                     } else {
                         nextSection.scrollIntoView({ behavior: 'smooth' });
                     }
                 }
-                return;
+                return false;
             }
 
             if (targetIndex < 0) {
-                allowPageScrollOnce = true;
-                setBodyLock(false);
-                isAnimating = true;
-                setTimeout(() => { isAnimating = false; }, 400);
                 if (lenis) {
-                    lenis.scrollTo(0, { duration: 1.2 });
+                    lenis.scrollTo(0, { duration: 1.1 });
                 } else {
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                 }
-                return;
+                return false;
             }
 
-            allowPageScrollOnce = false;
-            setBodyLock(true);
+            slideCooldown = true;
             isAnimating = true;
 
             // Deactivate current slide
@@ -129,80 +98,84 @@ document.addEventListener('DOMContentLoaded', () => {
 
             setTimeout(() => {
                 isAnimating = false;
-            }, 850);
+            }, 300);
+
+            setTimeout(() => {
+                slideCooldown = false;
+            }, 450);
+
+            return true;
         };
 
-        // Mouse Wheel Navigation
+        // Smooth Wheel Handler (Non-blocking & Throttle-Protected)
+        let lastWheelTime = 0;
         const onWheel = (e) => {
-            if (allowPageScrollOnce) {
-                if (window.scrollY === 0 && e.deltaY < 0) {
-                    allowPageScrollOnce = false;
-                    setBodyLock(true);
-                } else {
-                    return;
+            const now = Date.now();
+            const scrollPos = window.scrollY || window.pageYOffset;
+
+            // Only intercept wheel when user is at top of page in hero area
+            if (scrollPos <= 20) {
+                if (now - lastWheelTime < 400) return;
+
+                const direction = e.deltaY > 0 ? 1 : -1;
+                
+                // If moving forward and not on last slide, step through slide
+                if (direction > 0 && currentSlide < heroSlides.length - 1) {
+                    if (e.cancelable) e.preventDefault();
+                    lastWheelTime = now;
+                    goToSlide(currentSlide + 1);
+                } else if (direction < 0 && currentSlide > 0) {
+                    if (e.cancelable) e.preventDefault();
+                    lastWheelTime = now;
+                    goToSlide(currentSlide - 1);
                 }
             }
-
-            const isOverHero = e.target.closest('.fade-wrapper');
-            if (!isOverHero && window.scrollY > 50) return;
-
-            if (e.cancelable) e.preventDefault();
-
-            const direction = e.deltaY > 0 ? 1 : -1;
-            goToSlide(currentSlide + direction);
         };
 
         // Touch Swipe Navigation
         let touchStartY = 0;
         let touchStartX = 0;
-        let touchActive = false;
 
         const onTouchStart = (e) => {
-            const isOverHero = e.target.closest('.fade-wrapper');
-            if (!isOverHero) return;
-
-            touchActive = true;
+            if (window.scrollY > 20) return;
             touchStartY = e.touches[0].clientY;
             touchStartX = e.touches[0].clientX;
         };
 
-        const onTouchMove = (e) => {
-            if (!touchActive || allowPageScrollOnce) return;
-            const dy = e.touches[0].clientY - touchStartY;
-            const dx = e.touches[0].clientX - touchStartX;
-            if (Math.abs(dy) > Math.abs(dx) && e.cancelable) {
-                e.preventDefault();
-            }
-        };
-
         const onTouchEnd = (e) => {
-            if (!touchActive) return;
-            touchActive = false;
+            if (window.scrollY > 20) return;
             const touchEndY = (e.changedTouches && e.changedTouches[0]) ? e.changedTouches[0].clientY : touchStartY;
             const dy = touchEndY - touchStartY;
 
-            if (Math.abs(dy) >= 45) {
+            if (Math.abs(dy) >= 40) {
                 const direction = dy < 0 ? 1 : -1;
-                goToSlide(currentSlide + direction);
+                if (direction > 0 && currentSlide < heroSlides.length - 1) {
+                    goToSlide(currentSlide + 1);
+                } else if (direction < 0 && currentSlide > 0) {
+                    goToSlide(currentSlide - 1);
+                }
             }
         };
 
         // Keyboard Arrow Navigation
         const onKeyDown = (e) => {
-            if (window.scrollY < 100 && !allowPageScrollOnce) {
+            if (window.scrollY <= 50) {
                 if (e.key === 'ArrowDown' || e.key === 'PageDown') {
-                    e.preventDefault();
-                    goToSlide(currentSlide + 1);
+                    if (currentSlide < heroSlides.length - 1) {
+                        e.preventDefault();
+                        goToSlide(currentSlide + 1);
+                    }
                 } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
-                    e.preventDefault();
-                    goToSlide(currentSlide - 1);
+                    if (currentSlide > 0) {
+                        e.preventDefault();
+                        goToSlide(currentSlide - 1);
+                    }
                 }
             }
         };
 
         window.addEventListener('wheel', onWheel, { passive: false });
         window.addEventListener('touchstart', onTouchStart, { passive: true });
-        window.addEventListener('touchmove', onTouchMove, { passive: false });
         window.addEventListener('touchend', onTouchEnd, { passive: true });
         window.addEventListener('keydown', onKeyDown);
 
@@ -217,11 +190,23 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Ambient Glow Tracking
+    // High Performance RAF Ambient Glow Tracking
     if (ambientGlow) {
+        let mouseX = 0, mouseY = 0;
+        let ticking = false;
+
         window.addEventListener('mousemove', (e) => {
-            ambientGlow.style.transform = `translate(calc(${e.clientX}px - 50%), calc(${e.clientY}px - 50%))`;
-        });
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    ambientGlow.style.transform = `translate3d(calc(${mouseX}px - 50%), calc(${mouseY}px - 50%), 0)`;
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        }, { passive: true });
     }
 
     // ====================================================
@@ -255,7 +240,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     link.classList.add('active');
                 }
             });
-        });
+        }, { passive: true });
     }
 
     // Smooth Anchor Scroll with Lenis
@@ -267,11 +252,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (targetSection) {
                 e.preventDefault();
-                document.body.classList.remove('lock-scroll');
                 if (lenis) lenis.start();
                 
                 if (lenis) {
-                    lenis.scrollTo(targetSection, { offset: -70, duration: 1.2 });
+                    lenis.scrollTo(targetSection, { offset: -70, duration: 1.1 });
                 } else {
                     window.scrollTo({
                         top: targetSection.offsetTop - 70,
@@ -351,7 +335,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
 
-            // Refresh ScrollTrigger positions after grid changes
             setTimeout(() => {
                 if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
             }, 350);
@@ -562,7 +545,6 @@ document.addEventListener('DOMContentLoaded', () => {
         gsap.utils.toArray('.work-item').forEach((item) => {
             const image = item.querySelector('.work-image');
 
-            // Item fade-in & slide-up
             gsap.fromTo(item, 
                 { y: 80, opacity: 0 },
                 { 
@@ -578,7 +560,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             );
 
-            // Subtle Image Parallax Scroll Effect
             if (image) {
                 gsap.fromTo(image, 
                     { yPercent: -8, scale: 1.12 },
