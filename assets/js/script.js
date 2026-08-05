@@ -1,7 +1,35 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Register GSAP ScrollTrigger if available
+    // Register GSAP ScrollTrigger
     if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
         gsap.registerPlugin(ScrollTrigger);
+    }
+
+    // ====================================================
+    // 0. Lenis Smooth Scroll Engine (PC & Mobile)
+    // ====================================================
+    let lenis = null;
+
+    if (typeof Lenis !== 'undefined') {
+        lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Smooth exponential inertia curve
+            direction: 'vertical',
+            gestureDirection: 'vertical',
+            smoothWheel: true,
+            wheelMultiplier: 1,
+            smoothTouch: true,
+            touchMultiplier: 1.5,
+            infinite: false,
+        });
+
+        // Synchronize Lenis scroll position with GSAP ScrollTrigger
+        lenis.on('scroll', ScrollTrigger.update);
+
+        gsap.ticker.add((time) => {
+            lenis.raf(time * 1000);
+        });
+
+        gsap.ticker.lagSmoothing(0);
     }
 
     // ====================================================
@@ -28,8 +56,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const setBodyLock = (lock) => {
             if (lock && !allowPageScrollOnce) {
                 document.body.classList.add('lock-scroll');
+                if (lenis) lenis.stop();
             } else {
                 document.body.classList.remove('lock-scroll');
+                if (lenis) lenis.start();
             }
         };
 
@@ -56,7 +86,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 const nextSection = document.getElementById('about') || document.getElementById('services');
                 if (nextSection) {
-                    nextSection.scrollIntoView({ behavior: 'smooth' });
+                    if (lenis) {
+                        lenis.scrollTo(nextSection, { offset: -70, duration: 1.2 });
+                    } else {
+                        nextSection.scrollIntoView({ behavior: 'smooth' });
+                    }
                 }
                 return;
             }
@@ -66,7 +100,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 setBodyLock(false);
                 isAnimating = true;
                 setTimeout(() => { isAnimating = false; }, 400);
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+                if (lenis) {
+                    lenis.scrollTo(0, { duration: 1.2 });
+                } else {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
                 return;
             }
 
@@ -220,7 +258,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Smooth Anchor Scroll
+    // Smooth Anchor Scroll with Lenis
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             const targetId = this.getAttribute('href').substring(1);
@@ -229,13 +267,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (targetSection) {
                 e.preventDefault();
-                // Release lock scroll if scrolling from nav link
                 document.body.classList.remove('lock-scroll');
+                if (lenis) lenis.start();
                 
-                window.scrollTo({
-                    top: targetSection.offsetTop - 70,
-                    behavior: 'smooth'
-                });
+                if (lenis) {
+                    lenis.scrollTo(targetSection, { offset: -70, duration: 1.2 });
+                } else {
+                    window.scrollTo({
+                        top: targetSection.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                }
             }
         });
     });
@@ -256,12 +298,14 @@ document.addEventListener('DOMContentLoaded', () => {
             mobileMenuToggle.setAttribute('aria-expanded', 'true');
             mobileDrawer.setAttribute('aria-hidden', 'false');
             document.body.style.overflow = 'hidden';
+            if (lenis) lenis.stop();
         } else {
             mobileDrawer.classList.remove('open');
             mobileMenuToggle.classList.remove('active');
             mobileMenuToggle.setAttribute('aria-expanded', 'false');
             mobileDrawer.setAttribute('aria-hidden', 'true');
             document.body.style.overflow = '';
+            if (lenis) lenis.start();
         }
     };
 
@@ -306,6 +350,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     }, 300);
                 }
             });
+
+            // Refresh ScrollTrigger positions after grid changes
+            setTimeout(() => {
+                if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
+            }, 350);
         });
     });
 
@@ -327,6 +376,7 @@ document.addEventListener('DOMContentLoaded', () => {
         videoModal.classList.add('open');
         videoModal.setAttribute('aria-hidden', 'false');
         document.body.style.overflow = 'hidden';
+        if (lenis) lenis.stop();
     };
 
     const closeVideoModal = () => {
@@ -335,6 +385,7 @@ document.addEventListener('DOMContentLoaded', () => {
         videoModal.setAttribute('aria-hidden', 'true');
         videoIframe.src = '';
         document.body.style.overflow = '';
+        if (lenis) lenis.start();
     };
 
     workItems.forEach(item => {
@@ -368,6 +419,7 @@ document.addEventListener('DOMContentLoaded', () => {
         quoteModal.classList.add('open');
         quoteModal.setAttribute('aria-hidden', 'false');
         document.body.style.overflow = 'hidden';
+        if (lenis) lenis.stop();
     };
 
     const closeQuoteModal = () => {
@@ -375,6 +427,7 @@ document.addEventListener('DOMContentLoaded', () => {
         quoteModal.classList.remove('open');
         quoteModal.setAttribute('aria-hidden', 'true');
         document.body.style.overflow = '';
+        if (lenis) lenis.start();
     };
 
     openQuoteBtns.forEach(btn => {
@@ -413,7 +466,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 4000);
     };
 
-    // Contact Form Handler
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
         contactForm.addEventListener('submit', (e) => {
@@ -423,7 +475,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Quote Modal Form Handler
     if (quoteModalForm) {
         quoteModalForm.addEventListener('submit', (e) => {
             e.preventDefault();
@@ -434,10 +485,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ====================================================
-    // 8. GSAP ScrollTrigger Animations & Stat Counters
+    // 8. Sohub.digital Inspired GSAP ScrollTrigger Animations
     // ====================================================
     if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-        // Section Header Animations
+        
+        // A. Section Header Text Reveal (Mask/Slide-Up)
         gsap.utils.toArray('.section-header').forEach(headerEl => {
             const subtitle = headerEl.querySelector('.section-subtitle');
             const title = headerEl.querySelector('.section-title');
@@ -451,14 +503,21 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             if (subtitle) {
-                tl.fromTo(subtitle, { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.6, ease: "power2.out" });
+                tl.fromTo(subtitle, 
+                    { opacity: 0, y: 25 }, 
+                    { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }
+                );
             }
             if (title) {
-                tl.fromTo(title, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }, "-=0.3");
+                tl.fromTo(title, 
+                    { opacity: 0, y: 40, skewY: 2 }, 
+                    { opacity: 1, y: 0, skewY: 0, duration: 0.9, ease: "power4.out" }, 
+                    "-=0.4"
+                );
             }
         });
 
-        // Animated Number Counters in About Section
+        // B. Animated Number Counters in About Section
         const statNumbers = document.querySelectorAll('.stat-number');
         if (statNumbers.length > 0) {
             ScrollTrigger.create({
@@ -472,7 +531,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                         gsap.to(stat, {
                             innerText: target,
-                            duration: 2,
+                            duration: 2.2,
                             snap: { innerText: 1 },
                             ease: "power2.out"
                         });
@@ -481,54 +540,92 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        // Service Cards Animation
+        // C. Service Cards Staggered Reveal
         gsap.fromTo('.service-card', 
-            { y: 60, opacity: 0 },
+            { y: 70, opacity: 0, scale: 0.96 },
             { 
                 y: 0, 
                 opacity: 1, 
-                duration: 0.8, 
+                scale: 1,
+                duration: 0.9, 
                 stagger: 0.12, 
                 ease: "power3.out",
                 scrollTrigger: {
                     trigger: '.services-grid',
-                    start: "top 80%",
+                    start: "top 82%",
                     toggleActions: "play none none reverse"
                 }
             }
         );
 
-        // Portfolio Items Fade
-        gsap.utils.toArray('.work-item').forEach((item, i) => {
+        // D. Portfolio Masonry Items Reveal & Image Parallax Effect
+        gsap.utils.toArray('.work-item').forEach((item) => {
+            const image = item.querySelector('.work-image');
+
+            // Item fade-in & slide-up
             gsap.fromTo(item, 
-                { y: 60, opacity: 0 },
+                { y: 80, opacity: 0 },
                 { 
                     y: 0, 
                     opacity: 1, 
-                    duration: 0.9, 
-                    delay: (i % 2) * 0.15,
+                    duration: 1, 
                     ease: "power3.out",
                     scrollTrigger: {
                         trigger: item,
-                        start: "top 85%",
+                        start: "top 88%",
                         toggleActions: "play none none reverse"
                     }
                 }
             );
+
+            // Subtle Image Parallax Scroll Effect
+            if (image) {
+                gsap.fromTo(image, 
+                    { yPercent: -8, scale: 1.12 },
+                    {
+                        yPercent: 8,
+                        scale: 1,
+                        ease: "none",
+                        scrollTrigger: {
+                            trigger: item,
+                            start: "top bottom",
+                            end: "bottom top",
+                            scrub: true
+                        }
+                    }
+                );
+            }
         });
 
-        // Testimonial Cards Animation
+        // E. Testimonials Grid Staggered Reveal
         gsap.fromTo('.testimonial-card',
-            { y: 40, opacity: 0 },
+            { y: 50, opacity: 0 },
             {
                 y: 0,
                 opacity: 1,
-                duration: 0.8,
-                stagger: 0.15,
-                ease: "power2.out",
+                duration: 0.85,
+                stagger: 0.14,
+                ease: "power3.out",
                 scrollTrigger: {
                     trigger: '.testimonials-grid',
-                    start: "top 80%",
+                    start: "top 82%",
+                    toggleActions: "play none none reverse"
+                }
+            }
+        );
+
+        // F. Brand Logos Reveal
+        gsap.fromTo('.brand-logo-item',
+            { opacity: 0, y: 20 },
+            {
+                opacity: 0.7,
+                y: 0,
+                duration: 0.8,
+                stagger: 0.1,
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: '.brand-logos-row',
+                    start: "top 90%",
                     toggleActions: "play none none reverse"
                 }
             }
