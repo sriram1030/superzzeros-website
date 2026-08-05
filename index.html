@@ -4,14 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Superzzeros | Boutique Studio & Video Production</title>
-    <!-- Fonts: Syne (Bold Display), Playfair Display (Italic Accent Serif), Oswald (Headings), Inter (Body) -->
+    <meta name="description" content="Superzzeros is an elite boutique video production and creative studio crafting commercials, documentaries, brand films, and visual effects for visionaries worldwide.">
+    
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400;1,600;1,700;1,800&family=Syne:wght@700;800&family=Oswald:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400;1,600;1,700;1,800&family=Syne:wght@700;800&family=Oswald:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
 
     <!-- Ambient Glowing Background Spotlight -->
     <div class="ambient-glow" id="ambientGlow"></div>
@@ -19,35 +20,64 @@
     <!-- Header Navigation -->
     <header id="header" class="site-header">
         <div class="nav-container">
-            <a href="#" class="logo-link">
+            <a href="#home" class="logo-link" aria-label="Superzzeros Home">
                 <img src="SUPERZZEROS-LOGO.png" alt="Superzzeros Logo" class="header-logo">
             </a>
-            <nav class="main-nav">
+            <nav class="main-nav" aria-label="Main Navigation">
                 <ul class="nav-vertical-links">
                     <li><a href="#home" class="nav-link active">HOME</a></li>
                     <li><a href="#about" class="nav-link">ABOUT</a></li>
-                    <li><a href="#works" class="nav-link">PORTFOLIO</a></li>
                     <li><a href="#services" class="nav-link">SERVICES</a></li>
+                    <li><a href="#works" class="nav-link">PORTFOLIO</a></li>
+                    <li><a href="#clients" class="nav-link">CLIENTS</a></li>
                     <li><a href="#contacts" class="nav-link">CONTACT</a></li>
                 </ul>
             </nav>
             <div class="header-action">
-                <a href="#contacts" class="btn-quote">GET A QUOTE</a>
+                <button type="button" class="btn-quote" id="openQuoteModalBtn">GET A QUOTE</button>
             </div>
-            <div class="mobile-menu-toggle" aria-label="Toggle menu">
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle mobile menu" aria-expanded="false">
                 <span></span>
                 <span></span>
                 <span></span>
-            </div>
+            </button>
         </div>
     </header>
 
+    <!-- Mobile Drawer Menu Navigation -->
+    <div class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
+        <div class="drawer-overlay" id="drawerOverlay"></div>
+        <div class="drawer-content">
+            <div class="drawer-header">
+                <img src="SUPERZZEROS-LOGO.png" alt="Superzzeros Logo" class="drawer-logo">
+                <button class="drawer-close" id="drawerClose" aria-label="Close menu">&times;</button>
+            </div>
+            <ul class="drawer-nav-links">
+                <li><a href="#home" class="drawer-link">HOME</a></li>
+                <li><a href="#about" class="drawer-link">ABOUT</a></li>
+                <li><a href="#services" class="drawer-link">SERVICES</a></li>
+                <li><a href="#works" class="drawer-link">PORTFOLIO</a></li>
+                <li><a href="#clients" class="drawer-link">CLIENTS</a></li>
+                <li><a href="#contacts" class="drawer-link">CONTACT</a></li>
+            </ul>
+            <div class="drawer-footer">
+                <button type="button" class="btn-primary btn-block" id="mobileQuoteBtn">GET A QUOTE</button>
+                <div class="drawer-socials">
+                    <a href="#" aria-label="Instagram">IG</a>
+                    <a href="#" aria-label="Vimeo">VM</a>
+                    <a href="#" aria-label="YouTube">YT</a>
+                    <a href="#" aria-label="LinkedIn">LI</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Main Content -->
     <main>
-        <!-- Zoomoe Studio Style Hero Section (White Theme) -->
+        <!-- Zoomoe Studio Style Hero Section -->
         <section id="home" class="hero-section fade-wrapper hero-light-theme">
 
-            <!-- Slide Counters & Indicators -->
+            <!-- Slide Controls & Indicators -->
             <div class="hero-controls">
                 <div class="hero-counter">
                     <span class="current-num" id="currentSlideNum">01</span>
@@ -74,39 +104,116 @@
                     <h1 class="hero-editorial-title">
                         WE CREATE <span class="font-accent">STUNNING</span> VISUALS
                     </h1>
-                    <p class="hero-subtitle">High-end video production & cinematic storytelling.</p>
+                    <p class="hero-subtitle">High-end video production & cinematic storytelling for visionary brands.</p>
                 </div>
             </div>
 
             <!-- Slide 2 -->
             <div class="fade-section" data-slide="1">
                 <div class="hero-content-inner">
+                    <div class="hero-badge">CREATIVE DIRECTING</div>
                     <h2 class="hero-editorial-statement">
                         CRAFTING <span class="font-accent">EMOTIONS</span>
                     </h2>
-                    <p class="hero-subtitle">Commercials, brand films, and visual effects.</p>
+                    <p class="hero-subtitle">Commercials, brand films, and breathtaking visual effects.</p>
                 </div>
             </div>
 
             <!-- Slide 3 -->
             <div class="fade-section" data-slide="2">
                 <div class="hero-content-inner">
+                    <div class="hero-badge">CINEMATIC RIGGING</div>
                     <h2 class="hero-editorial-statement">
                         FOR <span class="font-accent">VISIONARIES</span>
                     </h2>
-                    <p class="hero-subtitle">Empowering brands that dare to lead.</p>
+                    <p class="hero-subtitle">Empowering brands that dare to lead and redefine industries.</p>
                 </div>
             </div>
 
             <!-- Slide 4 -->
             <div class="fade-section" data-slide="3">
                 <div class="hero-content-inner">
+                    <div class="hero-badge">OUR MANIFESTO</div>
                     <h2 class="hero-editorial-statement">
                         LEAVING A <span class="font-accent">MARK</span>
                     </h2>
-                    <p class="hero-subtitle">Unforgettable stories that echo forever.</p>
+                    <p class="hero-subtitle">Unforgettable visual stories that echo far beyond the screen.</p>
                     <div class="hero-cta-wrapper">
                         <a href="#works" class="btn-primary">EXPLORE WORK</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about-section bg-black">
+            <div class="container">
+                <div class="about-grid">
+                    <div class="about-content">
+                        <div class="section-header">
+                            <h5 class="section-subtitle">WHO WE ARE</h5>
+                            <h2 class="section-title">CINEMATIC ARTISTRY MEETS STRATEGIC VISION</h2>
+                        </div>
+                        <p class="about-text-lead">
+                            Superzzeros is a boutique studio specializing in high-concept film production, commercial directing, VFX, and post-production. We collaborate with bold brands and creative visionaries to turn ambitious ideas into iconic visual experiences.
+                        </p>
+                        <p class="about-text-body">
+                            From script conception and location scouting to RED/ARRI camera operations and color grading, our seamless pipeline ensures every frame carries aesthetic weight and emotional resonance.
+                        </p>
+
+                        <!-- Key Pillars -->
+                        <div class="values-grid">
+                            <div class="value-item">
+                                <span class="value-num">01</span>
+                                <div>
+                                    <h4>Bold Narrative</h4>
+                                    <p>Stories tailored to inspire, provoke, and leave a lasting impression.</p>
+                                </div>
+                            </div>
+                            <div class="value-item">
+                                <span class="value-num">02</span>
+                                <div>
+                                    <h4>Cinema Grade</h4>
+                                    <p>Shot with 8K anamorphic optics, calibrated color pipelines, and 3D soundscapes.</p>
+                                </div>
+                            </div>
+                            <div class="value-item">
+                                <span class="value-num">03</span>
+                                <div>
+                                    <h4>Cutting-Edge VFX</h4>
+                                    <p>Photorealistic CGI, motion graphics, and fluid visual compositing.</p>
+                                </div>
+                            </div>
+                            <div class="value-item">
+                                <span class="value-num">04</span>
+                                <div>
+                                    <h4>Boutique Focus</h4>
+                                    <p>Dedicated director-led attention for every client with zero compromises.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Statistics Card -->
+                    <div class="about-stats-wrapper">
+                        <div class="stats-card">
+                            <div class="stat-box">
+                                <span class="stat-number" data-target="150">0</span><span class="stat-plus">+</span>
+                                <span class="stat-label">Films Produced</span>
+                            </div>
+                            <div class="stat-box">
+                                <span class="stat-number" data-target="14">0</span><span class="stat-plus"></span>
+                                <span class="stat-label">Film Awards</span>
+                            </div>
+                            <div class="stat-box">
+                                <span class="stat-number" data-target="98">0</span><span class="stat-plus">%</span>
+                                <span class="stat-label">Client Retention</span>
+                            </div>
+                            <div class="stat-box">
+                                <span class="stat-number" data-target="10">0</span><span class="stat-plus">+</span>
+                                <span class="stat-label">Years of Craft</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -122,102 +229,309 @@
                 
                 <div class="services-grid">
                     <div class="service-card">
-                        <div class="service-icon">🎥</div>
-                        <h3>PRODUCTION</h3>
-                        <p>Full-scale video production for commercials, documentaries, and brand films with cinema-grade equipment.</p>
+                        <div class="service-icon-box">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+                        </div>
+                        <h3>COMMERCIAL PRODUCTION</h3>
+                        <p>Full-scale video production for TV commercials, digital campaigns, and brand films executed with cinema-grade rigs.</p>
+                        <div class="service-tags">
+                            <span>Concepting</span>
+                            <span>Directing</span>
+                            <span>ARRI/RED 8K</span>
+                        </div>
                     </div>
+
                     <div class="service-card">
-                        <div class="service-icon">✂️</div>
-                        <h3>POST-PRODUCTION</h3>
-                        <p>Offline & online editing, color grading, and sound design to bring your story to life.</p>
+                        <div class="service-icon-box">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                        </div>
+                        <h3>POST-PRODUCTION & EDITING</h3>
+                        <p>Offline & online editing, narrative rhythm cuts, DaVinci Resolve color grading, and Dolby Atmos audio mixing.</p>
+                        <div class="service-tags">
+                            <span>Editing</span>
+                            <span>Color Grading</span>
+                            <span>Sound Master</span>
+                        </div>
                     </div>
+
                     <div class="service-card">
-                        <div class="service-icon">✨</div>
-                        <h3>VFX & CGI</h3>
-                        <p>High-end visual effects, 3D animation, and motion graphics that push creative boundaries.</p>
+                        <div class="service-icon-box">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        </div>
+                        <h3>VFX & 3D ANIMATION</h3>
+                        <p>High-end visual effects, photorealistic 3D asset rendering, liquid simulation, and seamless camera compositing.</p>
+                        <div class="service-tags">
+                            <span>3D Motion</span>
+                            <span>CGI Simulation</span>
+                            <span>Compositing</span>
+                        </div>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon-box">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18V5l12-2v13M9 9l12-2"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+                        </div>
+                        <h3>MUSIC VIDEOS & DOCS</h3>
+                        <p>Visually arresting music video direction and high-impact documentary filmmaking that connects with global audiences.</p>
+                        <div class="service-tags">
+                            <span>Artist Vision</span>
+                            <span>On-Location</span>
+                            <span>Docu-Series</span>
+                        </div>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon-box">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+                        </div>
+                        <h3>BRAND FILM IDENTITY</h3>
+                        <p>Strategic narrative films that encapsulate brand heritage, product launches, and corporate vision with emotional punch.</p>
+                        <div class="service-tags">
+                            <span>Brand Identity</span>
+                            <span>Executive Film</span>
+                            <span>Launch Film</span>
+                        </div>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon-box">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+                        </div>
+                        <h3>CREATIVE DIRECTION</h3>
+                        <p>End-to-end creative supervision, storyboarding, art direction, and moodboard curation for premium campaigns.</p>
+                        <div class="service-tags">
+                            <span>Storyboarding</span>
+                            <span>Art Direction</span>
+                            <span>Lookbooks</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Works Section -->
+        <!-- Portfolio / Works Section -->
         <section id="works" class="works-section bg-black">
             <div class="container">
-                <div class="section-header">
-                    <h5 class="section-subtitle">PORTFOLIO</h5>
-                    <h2 class="section-title">SELECTED PROJECTS</h2>
+                <div class="works-header-flex">
+                    <div class="section-header">
+                        <h5 class="section-subtitle">PORTFOLIO</h5>
+                        <h2 class="section-title">SELECTED WORKS</h2>
+                    </div>
+
+                    <!-- Category Filter Tabs -->
+                    <div class="portfolio-filter-tabs" id="portfolioFilter">
+                        <button class="filter-btn active" data-filter="all">ALL</button>
+                        <button class="filter-btn" data-filter="commercial">COMMERCIAL</button>
+                        <button class="filter-btn" data-filter="documentary">DOCUMENTARY</button>
+                        <button class="filter-btn" data-filter="music">MUSIC VIDEO</button>
+                        <button class="filter-btn" data-filter="brand">BRAND FILM</button>
+                    </div>
                 </div>
                 
-                <div class="works-grid masonry-layout">
-                    <div class="work-item large">
+                <div class="works-grid masonry-layout" id="worksGrid">
+                    <!-- Item 1 (Large) -->
+                    <article class="work-item large" data-category="commercial" data-video-title="NEON HORIZON" data-video-cat="COMMERCIAL" data-video-embed="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1">
                         <div class="work-image" style="background-image: url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=1925&auto=format&fit=crop');">
                             <div class="work-overlay">
-                                <a href="#" class="small-play-btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></a>
+                                <button type="button" class="small-play-btn" aria-label="Play NEON HORIZON video">
+                                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                                </button>
                                 <div class="work-meta">
-                                    <p class="work-category">COMMERCIAL</p>
+                                    <p class="work-category">COMMERCIAL &bull; 2025</p>
                                     <h3>NEON HORIZON</h3>
+                                    <span class="work-view-btn">WATCH TRAILER &rarr;</span>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="work-item">
+                    </article>
+
+                    <!-- Item 2 -->
+                    <article class="work-item" data-category="documentary" data-video-title="THE ASCENT" data-video-cat="DOCUMENTARY" data-video-embed="https://www.youtube.com/embed/L_LUpnjgPso?autoplay=1">
                         <div class="work-image" style="background-image: url('https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=2071&auto=format&fit=crop');">
                             <div class="work-overlay">
-                                <a href="#" class="small-play-btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></a>
+                                <button type="button" class="small-play-btn" aria-label="Play THE ASCENT video">
+                                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                                </button>
                                 <div class="work-meta">
-                                    <p class="work-category">DOCUMENTARY</p>
+                                    <p class="work-category">DOCUMENTARY &bull; 2024</p>
                                     <h3>THE ASCENT</h3>
+                                    <span class="work-view-btn">WATCH TRAILER &rarr;</span>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="work-item">
+                    </article>
+
+                    <!-- Item 3 -->
+                    <article class="work-item" data-category="music" data-video-title="SONIC WAVES" data-video-cat="MUSIC VIDEO" data-video-embed="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1">
                         <div class="work-image" style="background-image: url('https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?q=80&w=2056&auto=format&fit=crop');">
                             <div class="work-overlay">
-                                <a href="#" class="small-play-btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></a>
+                                <button type="button" class="small-play-btn" aria-label="Play SONIC WAVES video">
+                                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                                </button>
                                 <div class="work-meta">
-                                    <p class="work-category">MUSIC VIDEO</p>
+                                    <p class="work-category">MUSIC VIDEO &bull; 2025</p>
                                     <h3>SONIC WAVES</h3>
+                                    <span class="work-view-btn">WATCH TRAILER &rarr;</span>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="work-item">
+                    </article>
+
+                    <!-- Item 4 -->
+                    <article class="work-item" data-category="brand" data-video-title="URBAN KINETIC" data-video-cat="BRAND FILM" data-video-embed="https://www.youtube.com/embed/L_LUpnjgPso?autoplay=1">
                         <div class="work-image" style="background-image: url('https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?q=80&w=2070&auto=format&fit=crop');">
                             <div class="work-overlay">
-                                <a href="#" class="small-play-btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></a>
+                                <button type="button" class="small-play-btn" aria-label="Play URBAN KINETIC video">
+                                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                                </button>
                                 <div class="work-meta">
-                                    <p class="work-category">BRAND FILM</p>
+                                    <p class="work-category">BRAND FILM &bull; 2025</p>
                                     <h3>URBAN KINETIC</h3>
+                                    <span class="work-view-btn">WATCH TRAILER &rarr;</span>
                                 </div>
                             </div>
                         </div>
+                    </article>
+
+                    <!-- Item 5 -->
+                    <article class="work-item" data-category="commercial" data-video-title="SILENT POWER" data-video-cat="COMMERCIAL" data-video-embed="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1">
+                        <div class="work-image" style="background-image: url('https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=2070&auto=format&fit=crop');">
+                            <div class="work-overlay">
+                                <button type="button" class="small-play-btn" aria-label="Play SILENT POWER video">
+                                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                                </button>
+                                <div class="work-meta">
+                                    <p class="work-category">COMMERCIAL &bull; 2024</p>
+                                    <h3>SILENT POWER</h3>
+                                    <span class="work-view-btn">WATCH TRAILER &rarr;</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Item 6 -->
+                    <article class="work-item" data-category="brand" data-video-title="ECHOES OF TOMORROW" data-video-cat="BRAND FILM" data-video-embed="https://www.youtube.com/embed/L_LUpnjgPso?autoplay=1">
+                        <div class="work-image" style="background-image: url('https://images.unsplash.com/photo-1518173946687-a4c8a383392e?q=80&w=1974&auto=format&fit=crop');">
+                            <div class="work-overlay">
+                                <button type="button" class="small-play-btn" aria-label="Play ECHOES OF TOMORROW video">
+                                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                                </button>
+                                <div class="work-meta">
+                                    <p class="work-category">BRAND FILM &bull; 2025</p>
+                                    <h3>ECHOES OF TOMORROW</h3>
+                                    <span class="work-view-btn">WATCH TRAILER &rarr;</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials & Clients Section -->
+        <section id="clients" class="clients-section bg-dark">
+            <div class="container">
+                <div class="section-header">
+                    <h5 class="section-subtitle">TRUSTED BY VISIONARIES</h5>
+                    <h2 class="section-title">CLIENTS & TESTIMONIALS</h2>
+                </div>
+
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars">★★★★★</div>
+                        <p class="testimonial-quote">"Superzzeros elevated our brand anthem into an absolute masterpiece. Their attention to lighting tone, rhythm, and VFX was beyond our wildest expectations."</p>
+                        <div class="testimonial-author">
+                            <h4>MARCUS VANCE</h4>
+                            <p>Global Creative Director, Apex Media</p>
+                        </div>
                     </div>
+
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars">★★★★★</div>
+                        <p class="testimonial-quote">"The level of cinematic precision Superzzeros brings to commercial sets is unbelievable. They delivered ahead of schedule with festival-grade final color balance."</p>
+                        <div class="testimonial-author">
+                            <h4>ELENA ROSTOVA</h4>
+                            <p>Head of Brand, Kinetix Luxury</p>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars">★★★★★</div>
+                        <p class="testimonial-quote">"Working with their team felt like collaborating with a Hollywood auteur studio. They brought emotional gravitas to our product release film."</p>
+                        <div class="testimonial-author">
+                            <h4>DAVID CHEN</h4>
+                            <p>Founder, AURA Tech</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Brand Logo Banner -->
+                <div class="brand-logos-row">
+                    <div class="brand-logo-item">APEX MEDIA</div>
+                    <div class="brand-logo-item">KINETIX</div>
+                    <div class="brand-logo-item">AURA TECH</div>
+                    <div class="brand-logo-item">NEBULA STUDIOS</div>
+                    <div class="brand-logo-item">VOGUE VISION</div>
                 </div>
             </div>
         </section>
 
         <!-- Contacts Section -->
-        <section id="contacts" class="contacts-section bg-dark">
+        <section id="contacts" class="contacts-section bg-black">
             <div class="container">
                 <div class="contact-grid">
-                    <div class="contact-text">
-                        <h2 class="section-title">LET'S MAKE<br><span class="text-accent">MAGIC</span> TOGETHER.</h2>
-                        <p>Ready to start your next project? Get in touch with our team today.</p>
+                    <div class="contact-text-col">
+                        <div class="section-header">
+                            <h5 class="section-subtitle">GET IN TOUCH</h5>
+                            <h2 class="section-title">LET'S MAKE<br><span class="text-accent">MAGIC</span> TOGETHER.</h2>
+                        </div>
+                        <p class="contact-lead-p">Have an ambitious film concept, commercial production, or visual story in mind? Reach out directly or send us a brief.</p>
+                        
+                        <div class="contact-info-list">
+                            <div class="info-block">
+                                <h4>DIRECT EMAIL</h4>
+                                <p><a href="mailto:hello@superzzeros.com">hello@superzzeros.com</a></p>
+                            </div>
+                            <div class="info-block">
+                                <h4>PRODUCTION DESK</h4>
+                                <p><a href="tel:+15551234567">+1 (555) 123-4567</a></p>
+                            </div>
+                            <div class="info-block">
+                                <h4>STUDIO HEADQUARTERS</h4>
+                                <p>123 Creative Avenue, Design District, NY 10001</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="contact-info">
-                        <div class="info-block">
-                            <h4>EMAIL US</h4>
-                            <p>hello@superzzeros.com</p>
-                        </div>
-                        <div class="info-block">
-                            <h4>CALL US</h4>
-                            <p>+1 (555) 123-4567</p>
-                        </div>
-                        <div class="info-block">
-                            <h4>VISIT US</h4>
-                            <p>123 Creative Avenue, Design District, NY 10001</p>
-                        </div>
+
+                    <!-- Contact Form Card -->
+                    <div class="contact-form-card">
+                        <h3 class="form-title">SEND US A MESSAGE</h3>
+                        <form id="contactForm" class="site-form">
+                            <div class="form-group">
+                                <label for="formName">YOUR NAME</label>
+                                <input type="text" id="formName" name="name" placeholder="John Doe" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="formEmail">YOUR EMAIL</label>
+                                <input type="email" id="formEmail" name="email" placeholder="john@example.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="formService">SERVICE INTEREST</label>
+                                <select id="formService" name="service" required>
+                                    <option value="" disabled selected>Select a Service</option>
+                                    <option value="Commercial Production">Commercial Production</option>
+                                    <option value="Post-Production & Editing">Post-Production & Editing</option>
+                                    <option value="VFX & 3D Animation">VFX & 3D Animation</option>
+                                    <option value="Music Video">Music Video</option>
+                                    <option value="Brand Film">Brand Film</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="formMessage">PROJECT DETAILS</label>
+                                <textarea id="formMessage" name="message" rows="4" placeholder="Tell us about your campaign goals, timeline, and vision..." required></textarea>
+                            </div>
+                            <button type="submit" class="btn-primary btn-block">SEND MESSAGE &rarr;</button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -227,18 +541,86 @@
     <!-- Footer -->
     <footer>
         <div class="container footer-content">
-            <div class="footer-logo">
-                <img src="SUPERZZEROS-LOGO.png" alt="Superzzeros Logo" style="height: 40px; filter: invert(1); mix-blend-mode: screen;">
+            <div class="footer-brand">
+                <a href="#home">
+                    <img src="SUPERZZEROS-LOGO.png" alt="Superzzeros Logo" class="footer-logo">
+                </a>
+                <p class="footer-tagline">Boutique Cinema & Visual Production</p>
             </div>
-            <p>&copy; 2026 Superzzeros. All Rights Reserved.</p>
+            <p class="footer-copy">&copy; 2026 Superzzeros Studio. All Rights Reserved.</p>
             <div class="social-links">
-                <a href="#">FB</a>
-                <a href="#">IG</a>
-                <a href="#">TW</a>
-                <a href="#">YT</a>
+                <a href="#" aria-label="Instagram">INSTAGRAM</a>
+                <a href="#" aria-label="Vimeo">VIMEO</a>
+                <a href="#" aria-label="YouTube">YOUTUBE</a>
+                <a href="#" aria-label="LinkedIn">LINKEDIN</a>
             </div>
         </div>
     </footer>
+
+    <!-- Video Lightbox Modal -->
+    <div class="video-modal-backdrop" id="videoModal" aria-hidden="true" role="dialog" aria-modal="true">
+        <div class="video-modal-container">
+            <button type="button" class="video-modal-close" id="closeVideoModalBtn" aria-label="Close video player">&times;</button>
+            <div class="video-modal-header">
+                <span class="modal-video-cat" id="modalVideoCat">COMMERCIAL</span>
+                <h3 class="modal-video-title" id="modalVideoTitle">NEON HORIZON</h3>
+            </div>
+            <div class="video-iframe-wrapper">
+                <iframe id="videoIframe" src="" title="Project Video Player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- Get a Quote Modal -->
+    <div class="modal-backdrop" id="quoteModal" aria-hidden="true" role="dialog" aria-modal="true">
+        <div class="quote-modal-card">
+            <button type="button" class="modal-close" id="closeQuoteModalBtn" aria-label="Close quote modal">&times;</button>
+            <div class="modal-header">
+                <h5 class="section-subtitle">PROJECT ESTIMATOR</h5>
+                <h2 class="modal-title">REQUEST A QUOTE</h2>
+                <p>Fill in project scope to receive a director response within 24 hours.</p>
+            </div>
+
+            <form id="quoteModalForm" class="site-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="qName">FULL NAME *</label>
+                        <input type="text" id="qName" required placeholder="Alex Turner">
+                    </div>
+                    <div class="form-group">
+                        <label for="qCompany">COMPANY / BRAND</label>
+                        <input type="text" id="qCompany" placeholder="Apex Studio">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="qEmail">WORK EMAIL *</label>
+                        <input type="email" id="qEmail" required placeholder="alex@company.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="qBudget">ESTIMATED BUDGET</label>
+                        <select id="qBudget" required>
+                            <option value="$10k - $25k">$10,000 - $25,000</option>
+                            <option value="$25k - $50k">$25,000 - $50,000</option>
+                            <option value="$50k - $100k">$50,000 - $100,000</option>
+                            <option value="$100k+">$100,000+</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="qDetails">PROJECT BRIEF & TIMELINE</label>
+                    <textarea id="qDetails" rows="4" required placeholder="Describe desired format, visual reference links, and deadline target..."></textarea>
+                </div>
+                <button type="submit" class="btn-primary btn-block">SUBMIT QUOTE REQUEST &rarr;</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast-notification" id="toastNotification">
+        <span class="toast-icon">✓</span>
+        <span class="toast-message" id="toastMessage">Form submitted successfully!</span>
+    </div>
 
     <!-- GSAP & ScrollTrigger -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
