@@ -150,7 +150,7 @@ section {
     width: 60vw;
     height: 60vw;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(229, 9, 20, 0.04) 0%, rgba(255,255,255,0) 70%);
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.035) 0%, rgba(255,255,255,0) 70%);
     pointer-events: none;
     z-index: 0;
     transition: transform 0.2s ease-out;
@@ -433,7 +433,10 @@ header.scrolled .mobile-menu-toggle span {
 .hero-bg-overlay {
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at 50% 35%, rgba(229, 9, 20, 0.12) 0%, rgba(8, 8, 10, 0.85) 60%, rgba(8, 8, 10, 1) 100%);
+    background: 
+        radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.06) 0%, rgba(20, 20, 26, 0.8) 50%, rgba(8, 8, 10, 1) 100%),
+        radial-gradient(circle at 15% 20%, rgba(255, 255, 255, 0.02) 0%, transparent 45%),
+        radial-gradient(circle at 85% 75%, rgba(255, 255, 255, 0.02) 0%, transparent 45%);
     pointer-events: none;
     z-index: 1;
 }
