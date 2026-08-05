@@ -866,6 +866,129 @@ header.scrolled .mobile-menu-toggle span {
 }
 
 /* ====================================================
+   Sohub.digital Style Stacked Cards Process Section
+   ==================================================== */
+.process-section {
+    position: relative;
+    padding: 8rem 0 10rem 0;
+}
+
+.stack-cards-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding-bottom: 4rem;
+}
+
+.stack-card {
+    position: sticky;
+    top: 120px;
+    background: var(--surface-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    padding: 3.5rem 3.2rem;
+    box-shadow: 0 -20px 50px rgba(0, 0, 0, 0.7);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    will-change: transform;
+}
+
+.stack-card:nth-child(1) {
+    top: 100px;
+    background: #14141a;
+    border-color: rgba(255, 255, 255, 0.12);
+}
+
+.stack-card:nth-child(2) {
+    top: 130px;
+    background: #191922;
+    border-color: rgba(255, 255, 255, 0.16);
+}
+
+.stack-card:nth-child(3) {
+    top: 160px;
+    background: #20202a;
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.stack-card:nth-child(4) {
+    top: 190px;
+    background: #262634;
+    border-color: rgba(255, 255, 255, 0.24);
+}
+
+.stack-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.8rem;
+}
+
+.stack-card-num {
+    font-family: "Geist", sans-serif;
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: 0.05em;
+    background: rgba(255, 255, 255, 0.1);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.stack-card-tag {
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--border-subtle);
+    padding: 0.4rem 1rem;
+    border-radius: var(--radius-full);
+}
+
+.stack-card-title {
+    font-family: "Geist", sans-serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 700;
+    line-height: 0.95;
+    letter-spacing: -0.05em;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(90deg, #9499a3 0%, #ffffff 30%, #ffffff 70%, #595d66 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.stack-card-desc {
+    color: var(--text-muted);
+    font-size: 1.08rem;
+    line-height: 1.7;
+    margin-bottom: 2.2rem;
+    max-width: 800px;
+}
+
+.stack-card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+}
+
+.stack-card-tags span {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--border-subtle);
+    padding: 0.45rem 1.1rem;
+    font-size: 0.8rem;
+    border-radius: var(--radius-sm);
+    color: rgba(255, 255, 255, 0.85);
+}
+
+/* ====================================================
    Orionix-Style Circular Rotating Dial Showcase Services
    ==================================================== */
 .orbital-showcase-section {
