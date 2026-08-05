@@ -50,15 +50,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (typeof gsap !== 'undefined') {
         const heroTl = gsap.timeline();
         
-        heroTl.fromTo('.hero-badge', 
-            { opacity: 0, y: -20, scale: 0.9 }, 
-            { opacity: 1, y: 0, scale: 1, duration: 0.8, ease: "power3.out" }, 
-            0.2
-        )
-        .fromTo('.hero-main-title', 
+        heroTl.fromTo('.hero-main-title', 
             { opacity: 0, y: 40, skewY: 2 }, 
             { opacity: 1, y: 0, skewY: 0, duration: 1.1, ease: "power4.out" }, 
-            "-=0.5"
+            0.2
         )
         .fromTo('.hero-lead-text', 
             { opacity: 0, y: 25 }, 
