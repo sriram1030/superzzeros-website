@@ -1592,150 +1592,148 @@ footer {
         gap: 1.8rem;
     }
 
-    /* Orbital Showcase Mobile & Tablet Redesign */
+/* Mobile Bento Grid default hidden on Desktop */
+.mobile-services-bento {
+    display: none;
+}
+
+@media (max-width: 992px) {
+    /* Hide desktop orbital dial showcase on mobile/tablet */
+    .orbital-showcase-wrapper {
+        display: none !important;
+    }
+
     .orbital-showcase-section {
-        padding: 4rem 0 3rem 0;
+        padding: 4.5rem 0 3rem 0;
         min-height: auto;
     }
 
-    .orbital-showcase-wrapper {
+    /* Mobile Bento Grid Layout (<992px) */
+    .mobile-services-bento {
+        display: grid;
         grid-template-columns: 1fr;
-        gap: 1.5rem;
-        margin-top: 1.5rem;
-        width: 100%;
-        box-sizing: border-box;
-    }
-    
-    .orbital-arc-panel {
-        height: auto;
+        gap: 1.4rem;
+        margin-top: 2rem;
         width: 100%;
         box-sizing: border-box;
     }
 
-    .circular-dial-wheel {
-        width: 100%;
-        height: auto;
-        border-radius: 0;
-        transform: none !important;
-    }
-    
-    .arc-svg-ring {
-        display: none !important;
-    }
-    
-    .orbital-dial-list {
-        position: relative !important;
-        inset: auto !important;
-        display: flex !important;
-        flex-direction: row !important;
-        overflow-x: auto !important;
-        -webkit-overflow-scrolling: touch;
-        scroll-snap-type: x mandatory;
-        padding: 0.4rem !important;
-        gap: 0.5rem !important;
-        width: 100% !important;
-        box-sizing: border-box !important;
-        background: rgba(255, 255, 255, 0.03);
+    .bento-card {
+        background: var(--surface-card);
         border: 1px solid var(--border-subtle);
-        border-radius: var(--radius-full);
-        scrollbar-width: none;
-        z-index: 10;
-    }
-    
-    .orbital-dial-list::-webkit-scrollbar {
-        display: none;
-    }
-    
-    .dial-node {
-        position: relative !important;
-        top: auto !important;
-        bottom: auto !important;
-        left: auto !important;
-        right: auto !important;
-        transform: none !important;
-        flex-shrink: 0 !important;
-        scroll-snap-align: center;
-        white-space: nowrap !important;
-        padding: 0.5rem 1rem !important;
-        font-size: 0.78rem !important;
-        border-radius: var(--radius-full) !important;
-        color: rgba(255, 255, 255, 0.5) !important;
-        background: transparent !important;
-        transition: all 0.3s ease !important;
-        cursor: pointer;
-        z-index: 10;
-        pointer-events: auto !important;
-        touch-action: manipulation;
+        border-radius: var(--radius-md);
+        padding: 1.8rem 1.4rem;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        transition: var(--transition);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
     }
 
-    .dial-node.active {
-        color: #ffffff !important;
-        background: var(--accent) !important;
-        box-shadow: 0 0 15px var(--accent-glow) !important;
+    .bento-card-featured {
+        border-color: rgba(229, 9, 20, 0.4);
+        background: linear-gradient(145deg, rgba(229, 9, 20, 0.08) 0%, rgba(20, 20, 20, 0.95) 100%);
     }
 
-    .dial-node.active .node-dot {
-        background: #ffffff !important;
-        box-shadow: none !important;
-    }
-
-    .orbital-content-card {
-        padding: 1.8rem 1.25rem !important;
-        width: 100% !important;
-        box-sizing: border-box !important;
-        overflow: hidden !important;
-        border-radius: var(--radius-md) !important;
-    }
-
-    .orbital-card-top {
+    .bento-card-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         margin-bottom: 1.2rem;
     }
 
-    .orbital-service-title {
-        font-size: clamp(1.35rem, 5vw, 1.8rem) !important;
-        line-height: 1.15 !important;
-        word-break: break-word !important;
-        overflow-wrap: break-word !important;
-        hyphens: auto !important;
-        margin-bottom: 1rem !important;
-        max-width: 100% !important;
+    .bento-num {
+        font-family: "Geist", sans-serif;
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: var(--accent);
+        letter-spacing: 0.05em;
     }
 
-    .orbital-service-desc {
-        font-size: 0.9rem !important;
-        line-height: 1.55 !important;
-        margin-bottom: 1.2rem !important;
+    .bento-badge {
+        font-family: var(--font-heading);
+        font-size: 0.65rem;
+        letter-spacing: 0.16em;
+        background: var(--accent);
+        color: #ffffff;
+        padding: 0.25rem 0.75rem;
+        border-radius: var(--radius-full);
     }
 
-    .orbital-tags {
-        display: flex !important;
-        flex-wrap: wrap !important;
-        gap: 0.4rem !important;
-        margin-bottom: 1.5rem !important;
+    .bento-title {
+        font-family: "Geist", sans-serif;
+        font-size: clamp(1.35rem, 5vw, 1.8rem);
+        font-weight: 700;
+        line-height: 1.12;
+        letter-spacing: -0.04em;
+        margin-bottom: 0.8rem;
+        color: #ffffff;
+        word-break: break-word;
     }
 
-    .orbital-tags span {
-        font-size: 0.75rem !important;
-        padding: 0.35rem 0.75rem !important;
-        border-radius: var(--radius-sm) !important;
+    .bento-desc {
+        color: var(--text-muted);
+        font-size: 0.9rem;
+        line-height: 1.55;
+        margin-bottom: 1.2rem;
     }
 
-    .orbital-card-actions {
-        width: 100% !important;
+    .bento-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+        margin-bottom: 1.4rem;
     }
 
-    .orbital-card-actions .btn-quote {
-        width: 100% !important;
-        padding: 0.85rem 1rem !important;
-        font-size: 0.78rem !important;
-        letter-spacing: 0.06em !important;
-        text-align: center !important;
-        white-space: normal !important;
-        word-break: break-word !important;
-        display: flex !important;
-        justify-content: center !important;
-        align-items: center !important;
+    .bento-tags span {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid var(--border-subtle);
+        padding: 0.35rem 0.75rem;
+        font-size: 0.72rem;
+        border-radius: var(--radius-sm);
+        color: rgba(255,255,255,0.8);
     }
+
+    .bento-card .btn-quote {
+        width: 100%;
+        padding: 0.85rem 1rem;
+        font-size: 0.78rem;
+        letter-spacing: 0.06em;
+        text-align: center;
+        white-space: normal;
+        word-break: break-word;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .bento-link-btn {
+        background: transparent;
+        border: 1px solid var(--border-subtle);
+        border-radius: var(--radius-full);
+        color: #ffffff;
+        padding: 0.65rem 1.2rem;
+        font-family: var(--font-heading);
+        font-size: 0.75rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        cursor: pointer;
+        text-align: center;
+        transition: var(--transition-fast);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        width: 100%;
+    }
+
+    .bento-link-btn:hover {
+        background: var(--accent);
+        border-color: var(--accent);
+        box-shadow: 0 0 15px var(--accent-glow);
+    }
+}
 }
 
 @media (max-width: 768px) {
