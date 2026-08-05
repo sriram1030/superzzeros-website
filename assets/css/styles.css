@@ -17,10 +17,15 @@
     --font-accent: 'Playfair Display', serif;
     --font-body: 'Inter', sans-serif;
     
-    --border-subtle: rgba(255, 255, 255, 0.08);
+    --border-subtle: rgba(255, 255, 255, 0.1);
     --border-light: rgba(0, 0, 0, 0.12);
     --transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     --transition-fast: all 0.2s ease;
+    
+    --radius-sm: 10px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+    --radius-full: 9999px;
 }
 
 /* Reset & Global */
@@ -242,7 +247,7 @@ header.scrolled .nav-link {
     color: #ffffff;
     border: 1.5px solid rgba(255, 255, 255, 0.35);
     padding: 0.75rem 1.8rem;
-    border-radius: 4px;
+    border-radius: var(--radius-full);
     transition: var(--transition);
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(8px);
@@ -584,7 +589,7 @@ header.scrolled .mobile-menu-toggle span {
     color: var(--text-light);
     padding: 1.1rem 2.2rem;
     border: 1px solid var(--border-subtle);
-    border-radius: 4px;
+    border-radius: var(--radius-full);
     transition: var(--transition);
 }
 
@@ -765,7 +770,7 @@ header.scrolled .mobile-menu-toggle span {
     background: var(--surface-card);
     border: 1px solid var(--border-subtle);
     padding: 3rem 2.5rem;
-    border-radius: 6px;
+    border-radius: var(--radius-lg);
     box-shadow: 0 20px 40px rgba(0,0,0,0.5);
 }
 
@@ -823,7 +828,7 @@ header.scrolled .mobile-menu-toggle span {
     padding: 2.5rem 2rem;
     border: 1px solid var(--border-subtle);
     background: var(--bg-black);
-    border-radius: 4px;
+    border-radius: var(--radius-md);
     transition: var(--transition);
     display: flex;
     flex-direction: column;
@@ -839,7 +844,7 @@ header.scrolled .mobile-menu-toggle span {
 .service-icon-box {
     width: 60px;
     height: 60px;
-    border-radius: 4px;
+    border-radius: var(--radius-sm);
     background: rgba(229, 9, 20, 0.1);
     color: var(--accent);
     display: flex;
@@ -879,8 +884,8 @@ header.scrolled .mobile-menu-toggle span {
     font-family: var(--font-heading);
     letter-spacing: 0.1em;
     background: rgba(255, 255, 255, 0.05);
-    padding: 0.3rem 0.7rem;
-    border-radius: 2px;
+    padding: 0.35rem 0.8rem;
+    border-radius: var(--radius-full);
     color: var(--text-muted);
 }
 
@@ -914,7 +919,7 @@ header.scrolled .mobile-menu-toggle span {
     color: var(--text-muted);
     padding: 0.6rem 1.4rem;
     border: 1px solid var(--border-subtle);
-    border-radius: 3px;
+    border-radius: var(--radius-full);
     transition: var(--transition-fast);
 }
 
@@ -934,7 +939,7 @@ header.scrolled .mobile-menu-toggle span {
 .work-item {
     position: relative;
     overflow: hidden;
-    border-radius: 4px;
+    border-radius: var(--radius-lg);
     cursor: pointer;
     transition: opacity 0.4s ease, transform 0.4s ease;
 }
@@ -1045,7 +1050,7 @@ header.scrolled .mobile-menu-toggle span {
     background: var(--bg-black);
     border: 1px solid var(--border-subtle);
     padding: 2.5rem 2rem;
-    border-radius: 4px;
+    border-radius: var(--radius-md);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -1138,7 +1143,7 @@ header.scrolled .mobile-menu-toggle span {
     background: var(--surface-card);
     border: 1px solid var(--border-subtle);
     padding: 3rem 2.5rem;
-    border-radius: 6px;
+    border-radius: var(--radius-lg);
 }
 
 .form-title {
@@ -1169,7 +1174,7 @@ header.scrolled .mobile-menu-toggle span {
     border: 1px solid var(--border-subtle);
     color: #ffffff;
     padding: 0.9rem 1.2rem;
-    border-radius: 4px;
+    border-radius: var(--radius-sm);
     font-family: var(--font-body);
     font-size: 0.95rem;
     transition: var(--transition-fast);
@@ -1270,7 +1275,7 @@ footer {
     max-width: 1100px;
     background: var(--bg-dark);
     border: 1px solid var(--border-subtle);
-    border-radius: 6px;
+    border-radius: var(--radius-lg);
     position: relative;
     padding: 2.5rem;
 }
@@ -1316,7 +1321,7 @@ footer {
     padding-bottom: 56.25%; /* 16:9 aspect ratio */
     height: 0;
     overflow: hidden;
-    border-radius: 4px;
+    border-radius: var(--radius-md);
     background: #000;
 }
 
@@ -1335,7 +1340,7 @@ footer {
     background: var(--surface-card);
     border: 1px solid var(--border-subtle);
     padding: 3rem 2.5rem;
-    border-radius: 8px;
+    border-radius: var(--radius-lg);
     position: relative;
     max-height: 90vh;
     overflow-y: auto;
@@ -1364,7 +1369,7 @@ footer {
     color: #ffffff;
     border-left: 4px solid var(--accent);
     padding: 1rem 1.8rem;
-    border-radius: 4px;
+    border-radius: var(--radius-md);
     display: flex;
     align-items: center;
     gap: 0.8rem;
