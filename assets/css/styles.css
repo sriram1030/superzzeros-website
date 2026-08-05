@@ -9,8 +9,8 @@
     --surface-card-hover: #22222c;
     --text-light: #f4f3ef;
     --text-muted: #9c9c98;
-    --accent: #E50914; /* Brand Red Accent */
-    --accent-glow: rgba(229, 9, 20, 0.4);
+    --accent: #d1d5db; /* Sleek Silver Gray Accent */
+    --accent-glow: rgba(255, 255, 255, 0.25);
     
     --font-heading: 'Geist', sans-serif;
     --font-display: 'Geist', sans-serif;
@@ -118,7 +118,7 @@ section {
 
 .section-subtitle {
     font-family: var(--font-heading);
-    color: var(--accent);
+    color: #a1a5b0;
     font-size: 0.95rem;
     letter-spacing: 0.22em;
     margin-bottom: 0.5rem;
@@ -510,7 +510,7 @@ header.scrolled .mobile-menu-toggle span {
     font-family: var(--font-accent);
     font-style: italic;
     font-weight: 400;
-    background: linear-gradient(90deg, #ff5c66 0%, #E50914 60%, #ff858d 100%);
+    background: linear-gradient(90deg, #ffffff 0%, #a1a5b0 50%, #ffffff 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -562,12 +562,12 @@ header.scrolled .mobile-menu-toggle span {
     width: 48px;
     height: 48px;
     border-radius: 50%;
-    background: var(--accent);
-    color: #ffffff;
+    background: linear-gradient(135deg, #ffffff 0%, #b0b5c0 100%);
+    color: #08080a;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 0 20px var(--accent-glow);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
     transition: transform 0.3s ease;
 }
 
@@ -1635,8 +1635,8 @@ footer {
     }
 
     .bento-card-featured {
-        border-color: rgba(229, 9, 20, 0.4);
-        background: linear-gradient(145deg, rgba(229, 9, 20, 0.08) 0%, rgba(20, 20, 20, 0.95) 100%);
+        border-color: rgba(255, 255, 255, 0.25);
+        background: linear-gradient(145deg, rgba(255, 255, 255, 0.08) 0%, rgba(20, 20, 26, 0.95) 100%);
     }
 
     .bento-card-top {
@@ -1650,7 +1650,7 @@ footer {
         font-family: "Geist", sans-serif;
         font-size: 1.15rem;
         font-weight: 700;
-        color: var(--accent);
+        color: #ffffff;
         letter-spacing: 0.05em;
     }
 
@@ -1658,7 +1658,8 @@ footer {
         font-family: var(--font-heading);
         font-size: 0.65rem;
         letter-spacing: 0.16em;
-        background: var(--accent);
+        background: rgba(255, 255, 255, 0.12);
+        border: 1px solid rgba(255, 255, 255, 0.2);
         color: #ffffff;
         padding: 0.25rem 0.75rem;
         border-radius: var(--radius-full);
