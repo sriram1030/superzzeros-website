@@ -566,27 +566,35 @@ document.addEventListener('DOMContentLoaded', () => {
             currentOrbitalIndex = index;
             const service = orbitalServices[index];
 
-            // 1. Hardware Accelerated Circular Rotation on Dial Wheel
-            const rotationAngle = - (index * 60);
-            if (circularDialWheel && typeof gsap !== 'undefined') {
-                gsap.to(circularDialWheel, {
-                    rotation: rotationAngle,
-                    duration: 0.45,
-                    ease: "power2.out",
-                    overwrite: "auto"
-                });
-
-                // Counter-rotate nodes so text stays upright
-                dialNodes.forEach((node) => {
-                    gsap.to(node, {
-                        rotation: -rotationAngle,
+            // 1. Hardware Accelerated Circular Rotation on Dial Wheel (Desktop >992px Only)
+            if (window.innerWidth > 992) {
+                const rotationAngle = - (index * 60);
+                if (circularDialWheel && typeof gsap !== 'undefined') {
+                    gsap.to(circularDialWheel, {
+                        rotation: rotationAngle,
                         duration: 0.45,
                         ease: "power2.out",
                         overwrite: "auto"
                     });
+
+                    // Counter-rotate nodes so text stays upright
+                    dialNodes.forEach((node) => {
+                        gsap.to(node, {
+                            rotation: -rotationAngle,
+                            duration: 0.45,
+                            ease: "power2.out",
+                            overwrite: "auto"
+                        });
+                    });
+                }
+            } else {
+                // Clear inline rotation transforms on mobile horizontal tab bar
+                if (circularDialWheel) {
+                    circularDialWheel.style.transform = 'none';
+                }
+                dialNodes.forEach((node) => {
+                    node.style.transform = 'none';
                 });
-            } else if (circularDialWheel) {
-                circularDialWheel.style.transform = `rotate(${rotationAngle}deg)`;
             }
 
             // Update active state on dial nodes
@@ -630,9 +638,9 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         };
 
-        // Dial click listener
+        // Dial click & touch listener
         dialNodes.forEach((node) => {
-            node.addEventListener('click', () => {
+            node.addEventListener('click', (e) => {
                 const targetIdx = parseInt(node.getAttribute('data-index'), 10);
                 if (!isNaN(targetIdx)) {
                     updateOrbitalShowcase(targetIdx);
