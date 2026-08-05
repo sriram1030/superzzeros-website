@@ -74,75 +74,86 @@
 
     <!-- Main Content -->
     <main>
-        <!-- Zoomoe Studio Style Hero Section -->
-        <section id="home" class="hero-section fade-wrapper hero-light-theme">
+        <!-- Fullscreen Cinematic Dark Showreel Hero Section -->
+        <section id="home" class="hero-section hero-dark-cinematic">
+            <!-- Background Atmosphere Overlay -->
+            <div class="hero-bg-overlay"></div>
 
-            <!-- Slide Controls & Indicators -->
-            <div class="hero-controls">
-                <div class="hero-counter">
-                    <span class="current-num" id="currentSlideNum">01</span>
-                    <span class="total-num"> / 04</span>
+            <div class="container hero-container">
+                <div class="hero-content">
+                    <div class="hero-badge">
+                        <span class="badge-dot"></span>
+                        BOUTIQUE CINEMA &amp; DIRECTING STUDIO
+                    </div>
+
+                    <h1 class="hero-main-title">
+                        WE DIRECT <span class="font-accent">ICONIC</span> VISUAL STORIES
+                    </h1>
+
+                    <p class="hero-lead-text">
+                        High-end commercial production, brand anthems, documentaries, and photorealistic visual effects crafted for visionaries worldwide.
+                    </p>
+
+                    <!-- Hero Actions -->
+                    <div class="hero-actions">
+                        <button type="button" class="btn-showreel" id="playShowreelBtn" aria-label="Play 2026 Studio Showreel">
+                            <span class="play-icon-pulse">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                            </span>
+                            <span class="showreel-text">
+                                <strong>PLAY SHOWREEL</strong>
+                                <small>REEL 2026 &bull; 02:15</small>
+                            </span>
+                        </button>
+
+                        <a href="#works" class="btn-secondary-glow">EXPLORE WORK &rarr;</a>
+                    </div>
                 </div>
-                <div class="hero-dots" id="heroDots">
-                    <button class="hero-dot active" data-index="0" aria-label="Go to Slide 1"></button>
-                    <button class="hero-dot" data-index="1" aria-label="Go to Slide 2"></button>
-                    <button class="hero-dot" data-index="2" aria-label="Go to Slide 3"></button>
-                    <button class="hero-dot" data-index="3" aria-label="Go to Slide 4"></button>
+
+                <!-- Floating Quick Stats Bar -->
+                <div class="hero-quick-stats">
+                    <div class="quick-stat-item">
+                        <span class="qs-num">150+</span>
+                        <span class="qs-label">FILMS PRODUCED</span>
+                    </div>
+                    <div class="quick-stat-divider"></div>
+                    <div class="quick-stat-item">
+                        <span class="qs-num">14</span>
+                        <span class="qs-label">GLOBAL AWARDS</span>
+                    </div>
+                    <div class="quick-stat-divider"></div>
+                    <div class="quick-stat-item">
+                        <span class="qs-num">8K</span>
+                        <span class="qs-label">ANAMORPHIC RIGS</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Infinite Marquee Ribbon -->
+            <div class="hero-marquee">
+                <div class="marquee-track">
+                    <span>COMMERCIALS</span> <span class="star">&bull;</span>
+                    <span>BRAND FILMS</span> <span class="star">&bull;</span>
+                    <span>DOCUMENTARIES</span> <span class="star">&bull;</span>
+                    <span>VFX &amp; CGI</span> <span class="star">&bull;</span>
+                    <span>MUSIC VIDEOS</span> <span class="star">&bull;</span>
+                    <span>DIRECTING</span> <span class="star">&bull;</span>
+                    <span>POST-PRODUCTION</span> <span class="star">&bull;</span>
+                    <span>COMMERCIALS</span> <span class="star">&bull;</span>
+                    <span>BRAND FILMS</span> <span class="star">&bull;</span>
+                    <span>DOCUMENTARIES</span> <span class="star">&bull;</span>
+                    <span>VFX &amp; CGI</span> <span class="star">&bull;</span>
+                    <span>MUSIC VIDEOS</span> <span class="star">&bull;</span>
+                    <span>DIRECTING</span> <span class="star">&bull;</span>
+                    <span>POST-PRODUCTION</span> <span class="star">&bull;</span>
                 </div>
             </div>
 
             <!-- Scroll Cue -->
-            <div class="hero-scroll-cue">
-                <span>SCROLL TO EXPLORE</span>
+            <a href="#about" class="hero-scroll-link" aria-label="Scroll down to About section">
+                <span>SCROLL DOWN</span>
                 <div class="cue-line"></div>
-            </div>
-
-            <!-- Slide 1 -->
-            <div class="fade-section active" data-slide="0">
-                <div class="hero-content-inner">
-                    <div class="hero-badge">SUPERZZEROS STUDIO</div>
-                    <h1 class="hero-editorial-title">
-                        WE CREATE <span class="font-accent">STUNNING</span> VISUALS
-                    </h1>
-                    <p class="hero-subtitle">High-end video production & cinematic storytelling for visionary brands.</p>
-                </div>
-            </div>
-
-            <!-- Slide 2 -->
-            <div class="fade-section" data-slide="1">
-                <div class="hero-content-inner">
-                    <div class="hero-badge">CREATIVE DIRECTING</div>
-                    <h2 class="hero-editorial-statement">
-                        CRAFTING <span class="font-accent">EMOTIONS</span>
-                    </h2>
-                    <p class="hero-subtitle">Commercials, brand films, and breathtaking visual effects.</p>
-                </div>
-            </div>
-
-            <!-- Slide 3 -->
-            <div class="fade-section" data-slide="2">
-                <div class="hero-content-inner">
-                    <div class="hero-badge">CINEMATIC RIGGING</div>
-                    <h2 class="hero-editorial-statement">
-                        FOR <span class="font-accent">VISIONARIES</span>
-                    </h2>
-                    <p class="hero-subtitle">Empowering brands that dare to lead and redefine industries.</p>
-                </div>
-            </div>
-
-            <!-- Slide 4 -->
-            <div class="fade-section" data-slide="3">
-                <div class="hero-content-inner">
-                    <div class="hero-badge">OUR MANIFESTO</div>
-                    <h2 class="hero-editorial-statement">
-                        LEAVING A <span class="font-accent">MARK</span>
-                    </h2>
-                    <p class="hero-subtitle">Unforgettable visual stories that echo far beyond the screen.</p>
-                    <div class="hero-cta-wrapper">
-                        <a href="#works" class="btn-primary">EXPLORE WORK</a>
-                    </div>
-                </div>
-            </div>
+            </a>
         </section>
 
         <!-- About Section -->

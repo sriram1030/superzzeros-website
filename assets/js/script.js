@@ -33,161 +33,53 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ====================================================
-    // 1. Ultra-Smooth Lag-Free Hero Controller
+    // 1. Fullscreen Cinematic Dark Showreel Hero Controller
     // ====================================================
-    const heroWrapper = document.querySelector('.fade-wrapper');
-    const heroSlides = document.querySelectorAll('.fade-section');
-    const heroDots = document.querySelectorAll('.hero-dot');
-    const currentSlideNum = document.getElementById('currentSlideNum');
+    const playShowreelBtn = document.getElementById('playShowreelBtn');
     const ambientGlow = document.getElementById('ambientGlow');
 
-    if (heroWrapper && heroSlides.length > 0) {
-        let currentSlide = 0;
-        let isAnimating = false;
-        let slideCooldown = false;
-
-        // Initialize first slide state
-        heroSlides.forEach((slide, idx) => {
-            if (idx === 0) slide.classList.add('active');
-            else slide.classList.remove('active');
+    if (playShowreelBtn) {
+        playShowreelBtn.addEventListener('click', () => {
+            if (typeof openVideoModal === 'function') {
+                openVideoModal('https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1', 'SUPERZZEROS 2026 REEL', 'CINEMATIC SHOWCASE');
+            }
         });
+    }
 
-        // Core Slide Transition Function (Fast & Hardware Accelerated)
-        const goToSlide = (targetIndex) => {
-            if (isAnimating || slideCooldown) return false;
-
-            // Boundaries check
-            if (targetIndex >= heroSlides.length) {
-                const nextSection = document.getElementById('about') || document.getElementById('services');
-                if (nextSection) {
-                    if (lenis) {
-                        lenis.scrollTo(nextSection, { offset: -70, duration: 1.1 });
-                    } else {
-                        nextSection.scrollIntoView({ behavior: 'smooth' });
-                    }
-                }
-                return false;
-            }
-
-            if (targetIndex < 0) {
-                if (lenis) {
-                    lenis.scrollTo(0, { duration: 1.1 });
-                } else {
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                }
-                return false;
-            }
-
-            slideCooldown = true;
-            isAnimating = true;
-
-            // Deactivate current slide
-            heroSlides[currentSlide].classList.remove('active');
-            if (heroDots[currentSlide]) heroDots[currentSlide].classList.remove('active');
-
-            // Activate target slide
-            heroSlides[targetIndex].classList.add('active');
-            if (heroDots[targetIndex]) heroDots[targetIndex].classList.add('active');
-
-            // Update Counter
-            if (currentSlideNum) {
-                currentSlideNum.textContent = String(targetIndex + 1).padStart(2, '0');
-            }
-
-            currentSlide = targetIndex;
-
-            setTimeout(() => {
-                isAnimating = false;
-            }, 300);
-
-            setTimeout(() => {
-                slideCooldown = false;
-            }, 450);
-
-            return true;
-        };
-
-        // Smooth Wheel Handler (Non-blocking & Throttle-Protected)
-        let lastWheelTime = 0;
-        const onWheel = (e) => {
-            const now = Date.now();
-            const scrollPos = window.scrollY || window.pageYOffset;
-
-            // Only intercept wheel when user is at top of page in hero area
-            if (scrollPos <= 20) {
-                if (now - lastWheelTime < 400) return;
-
-                const direction = e.deltaY > 0 ? 1 : -1;
-                
-                // If moving forward and not on last slide, step through slide
-                if (direction > 0 && currentSlide < heroSlides.length - 1) {
-                    if (e.cancelable) e.preventDefault();
-                    lastWheelTime = now;
-                    goToSlide(currentSlide + 1);
-                } else if (direction < 0 && currentSlide > 0) {
-                    if (e.cancelable) e.preventDefault();
-                    lastWheelTime = now;
-                    goToSlide(currentSlide - 1);
-                }
-            }
-        };
-
-        // Touch Swipe Navigation
-        let touchStartY = 0;
-        let touchStartX = 0;
-
-        const onTouchStart = (e) => {
-            if (window.scrollY > 20) return;
-            touchStartY = e.touches[0].clientY;
-            touchStartX = e.touches[0].clientX;
-        };
-
-        const onTouchEnd = (e) => {
-            if (window.scrollY > 20) return;
-            const touchEndY = (e.changedTouches && e.changedTouches[0]) ? e.changedTouches[0].clientY : touchStartY;
-            const dy = touchEndY - touchStartY;
-
-            if (Math.abs(dy) >= 40) {
-                const direction = dy < 0 ? 1 : -1;
-                if (direction > 0 && currentSlide < heroSlides.length - 1) {
-                    goToSlide(currentSlide + 1);
-                } else if (direction < 0 && currentSlide > 0) {
-                    goToSlide(currentSlide - 1);
-                }
-            }
-        };
-
-        // Keyboard Arrow Navigation
-        const onKeyDown = (e) => {
-            if (window.scrollY <= 50) {
-                if (e.key === 'ArrowDown' || e.key === 'PageDown') {
-                    if (currentSlide < heroSlides.length - 1) {
-                        e.preventDefault();
-                        goToSlide(currentSlide + 1);
-                    }
-                } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
-                    if (currentSlide > 0) {
-                        e.preventDefault();
-                        goToSlide(currentSlide - 1);
-                    }
-                }
-            }
-        };
-
-        window.addEventListener('wheel', onWheel, { passive: false });
-        window.addEventListener('touchstart', onTouchStart, { passive: true });
-        window.addEventListener('touchend', onTouchEnd, { passive: true });
-        window.addEventListener('keydown', onKeyDown);
-
-        // Hero Pagination Click Events
-        heroDots.forEach((dot) => {
-            dot.addEventListener('click', () => {
-                const targetIdx = parseInt(dot.getAttribute('data-index'), 10);
-                if (!isNaN(targetIdx)) {
-                    goToSlide(targetIdx);
-                }
-            });
-        });
+    // GSAP Hero Entrance Animations
+    if (typeof gsap !== 'undefined') {
+        const heroTl = gsap.timeline();
+        
+        heroTl.fromTo('.hero-badge', 
+            { opacity: 0, y: -20, scale: 0.9 }, 
+            { opacity: 1, y: 0, scale: 1, duration: 0.8, ease: "power3.out" }, 
+            0.2
+        )
+        .fromTo('.hero-main-title', 
+            { opacity: 0, y: 40, skewY: 2 }, 
+            { opacity: 1, y: 0, skewY: 0, duration: 1.1, ease: "power4.out" }, 
+            "-=0.5"
+        )
+        .fromTo('.hero-lead-text', 
+            { opacity: 0, y: 25 }, 
+            { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }, 
+            "-=0.6"
+        )
+        .fromTo('.hero-actions', 
+            { opacity: 0, y: 25 }, 
+            { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }, 
+            "-=0.6"
+        )
+        .fromTo('.hero-quick-stats', 
+            { opacity: 0, y: 30 }, 
+            { opacity: 1, y: 0, duration: 0.9, ease: "power3.out" }, 
+            "-=0.5"
+        )
+        .fromTo('.hero-marquee', 
+            { opacity: 0 }, 
+            { opacity: 1, duration: 1, ease: "power2.out" }, 
+            "-=0.4"
+        );
     }
 
     // High Performance RAF Ambient Glow Tracking
