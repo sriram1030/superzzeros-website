@@ -560,29 +560,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (dialNodes.length > 0 && orbitalContentCard) {
         let currentOrbitalIndex = 0;
-        let isOrbitalAnimating = false;
 
-        const updateOrbitalShowcase = (index) => {
-            if (isOrbitalAnimating || index === currentOrbitalIndex) return;
-            isOrbitalAnimating = true;
-
+        const updateOrbitalShowcase = (index, force = false) => {
+            if (!force && index === currentOrbitalIndex) return;
+            currentOrbitalIndex = index;
             const service = orbitalServices[index];
 
-            // 1. Physical Circular Rotation Animation on Dial Wheel
+            // 1. Hardware Accelerated Circular Rotation on Dial Wheel
             const rotationAngle = - (index * 60);
             if (circularDialWheel && typeof gsap !== 'undefined') {
                 gsap.to(circularDialWheel, {
                     rotation: rotationAngle,
-                    duration: 0.7,
-                    ease: "power3.out"
+                    duration: 0.45,
+                    ease: "power2.out",
+                    overwrite: "auto"
                 });
 
                 // Counter-rotate nodes so text stays upright
                 dialNodes.forEach((node) => {
                     gsap.to(node, {
                         rotation: -rotationAngle,
-                        duration: 0.7,
-                        ease: "power3.out"
+                        duration: 0.45,
+                        ease: "power2.out",
+                        overwrite: "auto"
                     });
                 });
             } else if (circularDialWheel) {
@@ -595,13 +595,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 else node.classList.remove('active');
             });
 
-            // 2. Content Card Transition
+            // 2. Smooth Content Card Transition
             if (typeof gsap !== 'undefined') {
                 gsap.to(orbitalContentCard, {
-                    opacity: 0,
-                    x: 20,
-                    duration: 0.25,
-                    ease: "power2.in",
+                    opacity: 0.1,
+                    y: 10,
+                    duration: 0.15,
+                    overwrite: "auto",
                     onComplete: () => {
                         if (orbitalCurrentIndex) orbitalCurrentIndex.textContent = service.num;
                         if (orbitalTitle) orbitalTitle.textContent = service.title;
@@ -613,10 +613,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
                         gsap.to(orbitalContentCard, {
                             opacity: 1,
-                            x: 0,
-                            duration: 0.45,
-                            ease: "power3.out",
-                            onComplete: () => { isOrbitalAnimating = false; }
+                            y: 0,
+                            duration: 0.35,
+                            ease: "power2.out",
+                            overwrite: "auto"
                         });
                     }
                 });
@@ -627,10 +627,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (orbitalTags) {
                     orbitalTags.innerHTML = service.tags.map(t => `<span>${t}</span>`).join('');
                 }
-                isOrbitalAnimating = false;
             }
-
-            currentOrbitalIndex = index;
         };
 
         // Dial click listener
@@ -658,22 +655,27 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        // GSAP ScrollTrigger Pinned Orbital Dial Showcase Controller
+        // GSAP ScrollTrigger Pinned Orbital Dial Showcase Controller (Butter-Smooth)
         if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined' && window.innerWidth > 992) {
             const orbitalSection = document.querySelector('.orbital-showcase-section');
             if (orbitalSection) {
+                let lastIdx = -1;
+
                 ScrollTrigger.create({
                     trigger: orbitalSection,
                     start: "top top",
-                    end: () => `+=${window.innerHeight * 3.5}`,
+                    end: () => `+=${window.innerHeight * 2.5}`,
                     pin: true,
                     anticipatePin: 1,
                     onUpdate: (self) => {
                         const progress = self.progress;
-                        const rawIndex = Math.floor(progress * orbitalServices.length);
-                        const targetIndex = Math.min(Math.max(rawIndex, 0), orbitalServices.length - 1);
+                        const targetIndex = Math.min(
+                            Math.floor(progress * orbitalServices.length),
+                            orbitalServices.length - 1
+                        );
                         
-                        if (targetIndex !== currentOrbitalIndex) {
+                        if (targetIndex !== lastIdx) {
+                            lastIdx = targetIndex;
                             updateOrbitalShowcase(targetIndex);
                         }
                     }
