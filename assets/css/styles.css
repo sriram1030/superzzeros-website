@@ -158,6 +158,29 @@ section {
 }
 
 /* ====================================================
+   Preloader
+   ==================================================== */
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #050505;
+    z-index: 99999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.preloader-logo {
+    width: 200px;
+    height: auto;
+    filter: brightness(0) invert(1); /* Ensure it's white if it's a black logo */
+    opacity: 0;
+}
+
+/* ====================================================
    Header & Navigation
    ==================================================== */
 header.site-header {

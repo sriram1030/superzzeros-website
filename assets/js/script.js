@@ -46,15 +46,37 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // GSAP Hero Entrance Animations
+    // GSAP Preloader & Hero Entrance Animations
     if (typeof gsap !== 'undefined') {
         const heroTl = gsap.timeline();
         
-        heroTl.fromTo('.hero-main-title', 
-            { opacity: 0, y: 40, skewY: 2 }, 
-            { opacity: 1, y: 0, skewY: 0, duration: 1.1, ease: "power4.out" }, 
-            0.2
-        )
+        // Set initial state for the cinematic logo reveal
+        gsap.set('.preloader-logo', { opacity: 0, scale: 1.4, filter: "brightness(0) invert(1) blur(15px) drop-shadow(0 0 0px rgba(255,255,255,0))" });
+        
+        // Preloader Animation
+        heroTl.to('.preloader-logo', { 
+                  opacity: 1, 
+                  scale: 1, 
+                  filter: "brightness(0) invert(1) blur(0px) drop-shadow(0 0 25px rgba(255,255,255,0.85))", 
+                  duration: 1.5, 
+                  ease: "power3.out" 
+              })
+              .to('.preloader-logo', { 
+                  opacity: 0, 
+                  scale: 1.15, 
+                  filter: "brightness(0) invert(1) blur(10px) drop-shadow(0 0 50px rgba(255,255,255,0))", 
+                  duration: 0.6, 
+                  ease: "power2.in", 
+                  delay: 0.8 
+              })
+              .to('#preloader', { y: "-100%", duration: 0.8, ease: "power4.inOut" })
+              
+        // Hero Entrance
+              .fromTo('.hero-main-title', 
+                  { opacity: 0, y: 40, skewY: 2 }, 
+                  { opacity: 1, y: 0, skewY: 0, duration: 1.1, ease: "power4.out" }, 
+                  "-=0.4"
+              )
         .fromTo('.hero-lead-text', 
             { opacity: 0, y: 25 }, 
             { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }, 
