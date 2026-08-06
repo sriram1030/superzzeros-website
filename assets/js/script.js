@@ -77,6 +77,38 @@ document.addEventListener('DOMContentLoaded', () => {
         );
     }
 
+    // ====================================================
+    // Hero Word Rotator
+    // ====================================================
+    const heroWordRotator = document.getElementById('heroWordRotator');
+    if (heroWordRotator && typeof gsap !== 'undefined') {
+        const words = ["MOVE", "INSPIRE", "CAPTIVATE", "CREATE", "TRANSFORM", "ELEVATE", "CONNECT", "IMPACT", "CRAFT"];
+        let currentWordIndex = 0;
+        
+        // Start rotation after initial entrance
+        setTimeout(() => {
+            setInterval(() => {
+                currentWordIndex = (currentWordIndex + 1) % words.length;
+                
+                // Fade out and move up
+                gsap.to(heroWordRotator, {
+                    opacity: 0,
+                    y: -15,
+                    duration: 0.3,
+                    ease: "power2.in",
+                    onComplete: () => {
+                        heroWordRotator.textContent = words[currentWordIndex];
+                        // Fade in from below
+                        gsap.fromTo(heroWordRotator, 
+                            { opacity: 0, y: 15 },
+                            { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }
+                        );
+                    }
+                });
+            }, 2500); // Change word every 2.5 seconds
+        }, 1500);
+    }
+
     // High Performance RAF Ambient Glow Tracking
     if (ambientGlow) {
         let mouseX = 0, mouseY = 0;
@@ -689,6 +721,41 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 });
             }
+        }
+    }
+
+    // ====================================================
+    // Horizontal Scroll Freeze for Process Section
+    // ====================================================
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined' && window.innerWidth > 768) {
+        const processSection = document.querySelector('.process-section');
+        const processWrapper = document.querySelector('.stack-cards-wrapper');
+        const processContainer = processSection ? processSection.querySelector('.container') : null;
+        
+        if (processSection && processWrapper && processContainer) {
+            setTimeout(() => {
+                const getScrollAmount = () => {
+                    const scrollWidth = processWrapper.scrollWidth;
+                    const containerWidth = processContainer.offsetWidth;
+                    return -(scrollWidth - containerWidth);
+                };
+                
+                if (processWrapper.scrollWidth > processContainer.offsetWidth) {
+                    gsap.to(processWrapper, {
+                        x: getScrollAmount,
+                        ease: "none",
+                        scrollTrigger: {
+                            trigger: processSection,
+                            start: "top 10%",
+                            end: () => `+=${processWrapper.scrollWidth - processContainer.offsetWidth}`,
+                            pin: true,
+                            scrub: 1,
+                            invalidateOnRefresh: true,
+                            anticipatePin: 1
+                        }
+                    });
+                }
+            }, 100);
         }
     }
 });
