@@ -2143,17 +2143,12 @@ footer {
 
 @media (max-width: 480px) {
     .stats-card { 
-        grid-template-columns: 1fr; 
+        grid-template-columns: 1fr 1fr; 
         gap: 1.5rem; 
     }
     
     .stat-box {
-        border-bottom: 1px solid var(--border-subtle);
         padding-bottom: 1.2rem;
-    }
-    
-    .stat-box:last-child {
-        border-bottom: none;
     }
     
     .stat-number {
