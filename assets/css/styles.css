@@ -1174,6 +1174,11 @@ header.scrolled .mobile-menu-toggle span {
         display: none !important;
     }
 }
+@media (min-width: 993px) {
+    .mobile-only {
+        display: none !important;
+    }
+}
 
 /* Badges */
 .orbital-badges {
