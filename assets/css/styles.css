@@ -1813,8 +1813,8 @@ footer {
     }
 
     .bento-card-featured {
-        border-color: rgba(255, 255, 255, 0.25);
-        background: linear-gradient(145deg, rgba(255, 255, 255, 0.08) 0%, rgba(20, 20, 26, 0.95) 100%);
+        border-color: var(--accent);
+        background: var(--surface-card);
     }
 
     .bento-card-top {
