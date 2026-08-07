@@ -50,25 +50,45 @@ document.addEventListener('DOMContentLoaded', () => {
     if (typeof gsap !== 'undefined') {
         const heroTl = gsap.timeline();
         
-        // Set initial state for the cinematic logo reveal
+        // Set initial state for the cinematic reveals
+        gsap.set('.preloader-text', { opacity: 0, scale: 1.4, filter: "blur(15px) drop-shadow(0 0 0px rgba(255,255,255,0))" });
         gsap.set('.preloader-logo', { opacity: 0, scale: 1.4, filter: "brightness(0) invert(1) blur(15px) drop-shadow(0 0 0px rgba(255,255,255,0))" });
         
-        // Preloader Animation
-        heroTl.to('.preloader-logo', { 
+        // Preloader Animation Sequence
+        // 1. Text Animation
+        heroTl.to('.preloader-text', { 
+                  opacity: 1, 
+                  scale: 1, 
+                  filter: "blur(0px) drop-shadow(0 0 25px rgba(255,255,255,0.85))", 
+                  duration: 1.5, 
+                  ease: "power3.out" 
+              })
+              .to('.preloader-text', { 
+                  opacity: 0, 
+                  scale: 1.15, 
+                  filter: "blur(10px) drop-shadow(0 0 50px rgba(255,255,255,0))", 
+                  duration: 0.6, 
+                  ease: "power2.in",
+                  delay: 0.5
+              })
+        // 2. Logo Animation
+              .to('.preloader-logo', { 
                   opacity: 1, 
                   scale: 1, 
                   filter: "brightness(0) invert(1) blur(0px) drop-shadow(0 0 25px rgba(255,255,255,0.85))", 
-                  duration: 1.5, 
-                  ease: "power3.out" 
+                  duration: 1.2, 
+                  ease: "power3.out",
+                  delay: 0.1
               })
               .to('.preloader-logo', { 
                   opacity: 0, 
                   scale: 1.15, 
                   filter: "brightness(0) invert(1) blur(10px) drop-shadow(0 0 50px rgba(255,255,255,0))", 
                   duration: 0.6, 
-                  ease: "power2.in", 
-                  delay: 0.8 
+                  ease: "power2.in",
+                  delay: 0.5
               })
+        // 3. Reveal Screen
               .to('#preloader', { y: "-100%", duration: 0.8, ease: "power4.inOut" })
               
         // Hero Entrance
